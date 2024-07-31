@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMPUL - Poltekkes Makassar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white font-sans">
+    <div class="max-w-screen-lg mx-auto p-4">
+        <header class="relative bg-white rounded-md shadow-lg p-4 flex items-center justify-between">
+            <img src="img/logoKemenkes.png" alt="Kemenkes RI Poltekkes Makassar" class="h-12">
+        </header>
+        
+        <div class=" left-0 right-0 mx-auto text-center -bottom-8">
+            <img src="img/gedung.jpg" alt="Jurusan Kebidanan" class="mx-auto">
+        </div>
+        <div class="flex justify-between space-x-4 relative mt-4 mb-4">
+            <div class=""><img src="img/logo/167420049363ca45ad438f30.09191866.png" alt="BLU" class="h-12"></div>
+            <div class=""><img src="img/logo/blu.svg" alt="ISO" class="h-12"></div>
+            <div class=""><img src="img/logo/b638b8928a26c8307d222b5d98c6ba4b.png" alt="ISO" class="h-12"></div>
+            <div class=""><img src="img/logo/iso-9001-250x250.jpg" alt="ISO" class="h-12"></div>
+            <div class=""><img src="img/logo/iso-21001-2018-educational-organisational-management-systems-500x500-1-282x300.png" alt="ISO" class="h-12"></div>
+            <div class=""><img src="img/logo/download-2.jpg" alt="ISO" class="h-12"></div>
+            <div class=""><img src="img/logo/Logo_BerAKHLAK1.png" alt="ISO" class="h-12"></div>
+            <div class=""><img src="img/logo/Logo_EVP.png" alt="ISO" class="h-12"></div>
+            <!-- Add other logos similarly with the carousel-item class -->
+        </div>
+        <main class="bg-white rounded-lg shadow-md p-6">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mt-3 mb-1">SIMPUL</h1>
+            <h2 class="text-xl font-medium text-center text-gray-600">(Sistem Informasi Manajemen Pembelajaran Unit Laboratorium)</h2>
+            <h2 class="text-xl font-bold text-center text-gray-800 mb-6">Jurusan Kebidanan</h2>
+            <h1 class="text-2xl font-bold text-center text-gray-800 mb-5">Profil Laboratorium</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="#" class="flex bg-blue-500 text-white p-4 rounded-lg shadow-md items-center hover:bg-blue-600 transition duration-300">
+                    <img src="img/icon/information-button.png" alt="Info Icon" class="h-8 w-8 mr-3">Informasi kegiatan PBM Praktikum
+                </a>
+                <a href="#" class="flex bg-blue-500 text-white p-4 rounded-lg shadow-md items-center hover:bg-blue-600 transition duration-300">
+                    <img src="img/icon/audit.png" alt="Form Icon" class="h-8 w-8 mr-3">Form Pendaftaran PBM Praktikum
+                </a>
+                <a href="#" class="flex bg-blue-500 text-white p-4 rounded-lg shadow-md items-center hover:bg-blue-600 transition duration-300">
+                    <img src="img/icon/building.png" alt="Facility Icon" class="h-8 w-8 mr-3">Form Penggunaan Fasilitas Laboratorium Non PBM
+                </a>
+                <a href="#" class="flex bg-blue-500 text-white p-4 rounded-lg shadow-md items-center hover:bg-blue-600 transition duration-300">
+                    <img src="img/icon/journal.png" alt="Journal Icon" class="h-8 w-8 mr-3">Form Jurnal Penggunaan Laboratorium PBM
+                </a>
+                <a href="#" class="flex bg-blue-500 text-white p-4 rounded-lg shadow-md items-center hover:bg-blue-600 transition duration-300" onclick="openModal()">
+                    <img src="img/icon/calendar.png" alt="Survey Icon" class="h-8 w-8 mr-3">Jadwal Penggunaan Laboratorium Kegiatan PBM
+                </a>
+                <a href="#" class="flex bg-blue-500 text-white p-4 rounded-lg shadow-md items-center hover:bg-blue-600 transition duration-300">
+                    <img src="img/icon/satisfaction.png" alt="Survey Icon" class="h-8 w-8 mr-3">Form Survey Kepuasan Pengunjung Laboratorium
+                </a>
+            </div>
+        </main>
+
+        <footer class="mt-8 bg-white p-4 rounded-md shadow-lg flex items-center justify-around">
+            <a href="#"><img src="img/icon/connections.png" alt="World" class="h-12"></a>
+            <a href="#"><img src="img/icon/placeholder.png" alt="Location" class="h-12"></a>
+            <a href="#"><img src="img/icon/stack-of-books.png" alt="Books" class="h-12"></a>
+            <a href="#"><img src="img/icon/youtube.png" alt="YouTube" class="h-12"></a>
+            <a href="#"><img src="img/icon/report.png" alt="Report" class="h-12"></a>
+        </footer>
+    </div>
+    <!-- Modal -->
+    <div id="pdfModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg overflow-hidden w-3/4 h-3/4">
+            <div class="flex justify-between items-center p-4 bg-blue-500 text-white">
+                <h2 class="text-xl">Jadwal Penggunaan Laboratorium Kegiatan PBM</h2>
+                <button onclick="closeModal()" class="text-xl">&times;</button>
+            </div>
+            <iframe src="docs/jadwal.pdf" class="w-full h-full"></iframe>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById('pdfModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('pdfModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
