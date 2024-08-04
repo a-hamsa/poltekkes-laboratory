@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         body {
             font-family: 'KoHo', sans-serif;
@@ -42,6 +45,12 @@
             z-index: 1000;
         }
 
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
     </style>
 </head>
 
@@ -104,6 +113,38 @@
                         <i class="fas fa-chalkboard-teacher mb-2"></i>
                         Pemakaian Lab untuk praktek
                     </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-flask mb-2"></i>
+                        IK - Alat Laboratorium
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-file-alt mb-2"></i>
+                        SOP Laboratorium
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-tools mb-2"></i>
+                        SOP Peralatan Workshop
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-gavel mb-2"></i>
+                        Tata Tertib Lab
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-clipboard-list mb-2"></i>
+                        Inventaris Lab
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-user-check mb-2"></i>
+                        Absensi Lab
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-user-clock mb-2"></i>
+                        Absensi Praktikum
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                        <i class="fas fa-chalkboard-teacher mb-2"></i>
+                        Pemakaian Lab untuk praktek
+                    </a>
                 </div>
             </div>
         </div>
@@ -143,8 +184,49 @@
                     <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+    <div class="floating-button">
+        <a href="https://wa.me/62895360674654" class="px-4 py-2 bg-teal-600 text-white rounded-full shadow-lg hover:bg-teal-700 flex items-center justify-center fas fa-headset mr-2"></a>
+    </div>
+
+    <div class="footer bg-lime-500 py-8 text-center text-white">
+        <div class="container mx-auto flex flex-wrap justify-around">
+            <!-- Address Section -->
+            <div class="address text-left mb-4">
+                <h3 class="text-lg font-semibold mb-2">Alamat Kami</h3>
+                <p class="text-sm">Jl. Wijaya Kusuma No.46, Banta-Bantaeng</p>
+                <p class="text-sm">Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90222</p>
+                <p class="text-sm">Phone: (123) 456-7890</p>
+                <p class="text-sm">Email: info@yourcompany.com</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="quick-links mb-4">
+                <h3 class="text-lg font-semibold mb-2">Quick Links</h3>
+                <div class="flex flex-col space-y-2">
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Maps</a>
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Feedback</a>
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Link 1</a>
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Link 2</a>
+                </div>
+            </div>
+            <!-- Social Media Section -->
+            <div class="social-media mb-4">
+                <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
+                <div class="flex space-x-4 justify-center">
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Copyright Section -->
+    <div class="bg-lime-600 py-2 text-center text-xs text-white">
+        <p>&copy; 2024 Poltekkes Kemenkes Makassar. All rights reserved.</p>
+        <p>Designed by Code Lab UH</p>
+    </div>
+    
 
     <!-- Copyright Section -->
     <div class="bg-lime-600 py-2 text-center text-xs text-white">
