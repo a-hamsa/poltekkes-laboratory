@@ -23,7 +23,7 @@
             background-size: cover;
             background-position: center;
         }
-
+        
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -34,18 +34,20 @@
             opacity: 1;
             transform: translateY(0);
         }
+
         .floating-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
         }
+
     </style>
 </head>
 
 <body class="bg-gray-100 text-gray-900">
     <div class="flex m-4 w-24 lg:w-32">
-        <img src="{{ asset('images/logo-kemenkes.png') }}" alt="Logo" class="max-w-full h-auto">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
     </div>
     <div class="hero flex items-center justify-center text-center py-24 text-white fade-in">
         <div>
@@ -70,35 +72,35 @@
             <div class="title text-2xl font-bold mb-8">Standart & Formulir Kegiatan Laboratorium</div>
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-flask mb-2"></i>
                         IK - Alat Laboratorium
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-file-alt mb-2"></i>
                         SOP Laboratorium
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-tools mb-2"></i>
                         SOP Peralatan Workshop
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-gavel mb-2"></i>
                         Tata Tertib Lab
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-clipboard-list mb-2"></i>
                         Inventaris Lab
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-user-check mb-2"></i>
                         Absensi Lab
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-user-clock mb-2"></i>
                         Absensi Praktikum
                     </a>
-                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 flex flex-col items-center">
+                    <a href="#" class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
                         <i class="fas fa-chalkboard-teacher mb-2"></i>
                         Pemakaian Lab untuk praktek
                     </a>
