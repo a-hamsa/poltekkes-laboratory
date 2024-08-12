@@ -15,4 +15,10 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard/banner', [DashboardController::class, 'banner'])->middleware('auth');
+Route::get('/dashboard/description', [DashboardController::class, 'desc'])->middleware('auth');
+
+
+Route::post('/banner', [DashboardController::class, 'updateBanner'])->name('dashboard.banner')->middleware('auth');
+Route::post('/desc', [DashboardController::class, 'updateDescription'])->name('dashboard.desc')->middleware('auth');
 
