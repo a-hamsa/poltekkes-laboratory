@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryClinics extends Model
+class SopClinic extends Model
 {
-    
     protected $fillable = [
-        'name',
-        'amount',
-        'condition',
-        'image',
+        'pdf_file',
     ];
 }

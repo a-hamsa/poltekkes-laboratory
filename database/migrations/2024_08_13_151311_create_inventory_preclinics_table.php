@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('inventory_preclinics', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('amount');
+            $table->string('condition'); // good or broken
+            $table->string('image'); // path to the image file
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('inventory_preclinics');
+    }
+};

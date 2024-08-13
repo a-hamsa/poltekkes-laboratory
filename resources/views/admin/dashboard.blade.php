@@ -32,14 +32,64 @@
             <nav class="flex flex-col flex-grow mt-10">
                 <a href="{{ route('dashboard') }}"
                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
-                <a href="{{ route('dashboarddesc') }}"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Description</a>
-                <a href="{{ route('dashboardbanner') }}"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Banner</a>
-                <a href="{{ route('dashboardschedule') }}"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Schedule</a>
-                <a href="{{ route('inventory.index') }}"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventory</a>
+
+                <div x-data="{ open: false }" x-init="open = true" class="space-y-2">
+                    <button @click="open = !open"
+                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
+                        <span>Klinik</span>
+                        <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
+                            class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div x-show="open" class="space-y-2 ml-3" x-cloak>
+                        <a href="{{ route('dashboardbanner') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Banner</a>
+                        <a href="{{ route('dashboarddesc') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Deskripsi</a>
+                        <a href="{{ route('dashboardschedule') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Jadwal</a>
+                        <a href="{{ route('inventory.index') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                        <a href="{{ route('dashboarddosen') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Dosen</a>
+                        <a href="{{ route('dashboardtatib') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Tatib</a>
+                        <a href="{{ route('dashboardsop') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                    </div>
+                </div>
+                <div x-data="{ open: false }" x-init="open = true" class="space-y-2">
+                    <button @click="open = !open"
+                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
+                        <span>Pre-Klinik</span>
+                        <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
+                            class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div x-show="open" class="space-y-2 ml-3" x-cloak>
+                        <a href="{{ route('prebanner') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Banner</a>
+                        <a href="{{ route('predesc') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Deskripsi</a>
+                        <a href="{{ route('preschedule') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Jadwal</a>
+                        <a href="{{ route('preinventory.index') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                        <a href="{{ route('predosen') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Dosen</a>
+                        <a href="{{ route('pretatib') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Tatib</a>
+                        <a href="{{ route('presop') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                    </div>
+                </div>
+
             </nav>
         </div>
         <!-- Main Content -->
@@ -57,7 +107,6 @@
             </div>
             @yield('content')
         </div>
-
     </div>
 
     <!-- Popup container for success -->
@@ -110,6 +159,8 @@
             </button>
         </div>
     </div>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

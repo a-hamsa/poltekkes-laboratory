@@ -1,30 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Banner;
-use App\Models\Schedule;
-use App\Models\Description;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\ClinicDosens;
-use App\Models\ClinicTatib;
+use App\Models\BannerPreklinik;
+use App\Models\DescriptionPreklinik;
+use App\Models\DosenPreklinik;
+use App\Models\SchedulePreklinik;
 use App\Models\SopClinic;
+use App\Models\SopPreklinik;
+use App\Models\TatibPreklinik;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class DashboardController extends Controller
-{
-    public function index()
-    {
-        session()->put('header', 'Dashboard');
-        return view('admin.home');
-    }
 
+class DashboardPreController extends Controller
+{
     public function banner()
     {
-        $banner = Banner::first(); // assuming you have a banner with id 1
-        session()->put('header', 'Banner Klinik');
-        return view('admin.banner', compact('banner'));
+        $banner = BannerPreklinik::first(); // assuming you have a banner with id 1
+        session()->put('header', 'Banner Pre-Klinik');
+        return view('preclinic.banner', compact('banner'));
     }
 
     public function updateBanner(Request $request)
@@ -45,7 +41,7 @@ class DashboardController extends Controller
 
         // Update the banner image path in your database or config
         // For example, let's assume you have a `Setting` model
-        $banner = Banner::firstOrCreate();
+        $banner = BannerPreklinik::firstOrCreate();
         $banner->image = $imageUrl;
         $banner->save();
 
@@ -54,10 +50,10 @@ class DashboardController extends Controller
 
     public function desc()
     {
-        $desc = Description::first(); // assuming you have a banner with id 1
+        $desc = DescriptionPreklinik::first(); // assuming you have a banner with id 1
 
         session()->put('header', 'Deskripsi Klinik');
-        return view('admin.desc', compact('desc'));
+        return view('preclinic.desc', compact('desc'));
     }
 
     public function updateDescription(Request $request)
@@ -68,7 +64,7 @@ class DashboardController extends Controller
             'description' => 'required|string',
         ]);
 
-        $section = Description::first();
+        $section = DescriptionPreklinik::first();
         if ($section) {
             $section->update([
                 'title' => $request->input('title'),
@@ -76,7 +72,7 @@ class DashboardController extends Controller
             ]);
         } else {
             // create a new record if no record exists
-            $section = Description::create([
+            $section = DescriptionPreklinik::create([
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
             ]);
@@ -90,10 +86,10 @@ class DashboardController extends Controller
 
     public function schedule()
     {
-        $schedule = Schedule::first(); // assuming you have a banner with id 1
+        $schedule = SchedulePreklinik::first(); // assuming you have a banner with id 1
 
-        session()->put('header', 'Jadwal Pemakaian Lab');
-        return view('admin.schedule', compact('schedule'));
+        session()->put('header', 'Jadwal Pemakaian Pre-Klinik');
+        return view('preclinic.schedule', compact('schedule'));
     }
     public function updateSchedule(Request $request)
     {
@@ -106,14 +102,14 @@ class DashboardController extends Controller
 
         // Store the PDF file in the public storage
         $pdfFileName = time() . '.' . $pdf_file->getClientOriginalExtension();
-        Storage::putFileAs('public/schedules', $pdf_file, $pdfFileName);
+        Storage::putFileAs('public/preklinik', $pdf_file, $pdfFileName);
 
         // Get the full URL of the uploaded PDF file
-        $pdfFileUrl = Storage::url('public/schedules/' . $pdfFileName);
+        $pdfFileUrl = Storage::url('public/preklinik/' . $pdfFileName);
 
         // Update the schedule PDF path in your database or config
         // For example, let's assume you have a `Schedule` model
-        $schedule = Schedule::firstOrCreate();
+        $schedule = SchedulePreklinik::firstOrCreate();
         $schedule->pdf_file = $pdfFileUrl;
         $schedule->save();
 
@@ -122,10 +118,10 @@ class DashboardController extends Controller
 
     public function dosen()
     {
-        $dosen = ClinicDosens::first(); // assuming you have a banner with id 1
+        $dosen = DosenPreklinik::first(); // assuming you have a banner with id 1
 
         session()->put('header', 'Daftar Nama Dosen');
-        return view('clinic.dosen', compact('dosen'));
+        return view('preclinic.dosen', compact('dosen'));
     }
 
     public function updateDosen(Request $request)
@@ -139,14 +135,14 @@ class DashboardController extends Controller
 
         // Store the PDF file in the public storage
         $pdfFileName = time() . '.' . $pdf_file->getClientOriginalExtension();
-        Storage::putFileAs('public/clinic', $pdf_file, $pdfFileName);
+        Storage::putFileAs('public/preklinik', $pdf_file, $pdfFileName);
 
         // Get the full URL of the uploaded PDF file
-        $pdfFileUrl = Storage::url('public/clinic/' . $pdfFileName);
+        $pdfFileUrl = Storage::url('public/preklinik/' . $pdfFileName);
 
         // Update the schedule PDF path in your database or config
         // For example, let's assume you have a `Schedule` model
-        $dosen = ClinicDosens::firstOrCreate();
+        $dosen = DosenPreklinik::firstOrCreate();
         $dosen->pdf_file = $pdfFileUrl;
         $dosen->save();
 
@@ -155,10 +151,10 @@ class DashboardController extends Controller
 
     public function tatib()
     {
-        $tatib = ClinicTatib::first(); // assuming you have a banner with id 1
+        $tatib = TatibPreklinik::first(); // assuming you have a banner with id 1
 
         session()->put('header', 'Tata tertib lab');
-        return view('clinic.tatib', compact('tatib'));
+        return view('preclinic.tatib', compact('tatib'));
     }
 
     public function updateTatib(Request $request)
@@ -172,14 +168,14 @@ class DashboardController extends Controller
 
         // Store the PDF file in the public storage
         $pdfFileName = time() . '.' . $pdf_file->getClientOriginalExtension();
-        Storage::putFileAs('public/clinic', $pdf_file, $pdfFileName);
+        Storage::putFileAs('public/preklinik', $pdf_file, $pdfFileName);
 
         // Get the full URL of the uploaded PDF file
-        $pdfFileUrl = Storage::url('public/clinic/' . $pdfFileName);
+        $pdfFileUrl = Storage::url('public/preklinik/' . $pdfFileName);
 
         // Update the schedule PDF path in your database or config
         // For example, let's assume you have a `Schedule` model
-        $tatib = ClinicTatib::firstOrCreate();
+        $tatib = TatibPreklinik::firstOrCreate();
         $tatib->pdf_file = $pdfFileUrl;
         $tatib->save();
 
@@ -188,10 +184,10 @@ class DashboardController extends Controller
 
     public function sop()
     {
-        $sop = SopClinic::first(); // assuming you have a banner with id 1
+        $sop = SopPreklinik::first(); // assuming you have a banner with id 1
 
         session()->put('header', 'SOP dan Instruksi Kerja');
-        return view('clinic.sop', compact('sop'));
+        return view('preclinic.sop', compact('sop'));
     }
 
     public function updateSop(Request $request)
@@ -205,10 +201,10 @@ class DashboardController extends Controller
 
         // Store the PDF file in the public storage
         $pdfFileName = time() . '.' . $pdf_file->getClientOriginalExtension();
-        Storage::putFileAs('public/clinic', $pdf_file, $pdfFileName);
+        Storage::putFileAs('public/preklinik', $pdf_file, $pdfFileName);
 
         // Get the full URL of the uploaded PDF file
-        $pdfFileUrl = Storage::url('public/clinic/' . $pdfFileName);
+        $pdfFileUrl = Storage::url('public/preklinik/' . $pdfFileName);
 
         // Update the schedule PDF path in your database or config
         // For example, let's assume you have a `Schedule` model
@@ -218,5 +214,4 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', 'Schedule updated successfully!');
     }
-
 }

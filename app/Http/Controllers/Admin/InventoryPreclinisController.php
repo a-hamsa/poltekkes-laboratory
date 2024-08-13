@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\InventoryClinics;
+use App\Models\InventoryPreClinic;
 use Illuminate\Http\Request;
 
-class InventoryClinicsController extends Controller
+class InventoryPreclinisController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $inventories = InventoryClinics::all();
+        $inventories = InventoryPreClinic::all();
 
-        session()->put('header', 'Daftar Inventaris');
-        return view('clinic.invent', compact('inventories'));
+        session()->put('header', 'Daftar Inventaris Pre-Klinik');
+        return view('preclinic.invent', compact('inventories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class InventoryClinicsController extends Controller
     public function create()
     {
         session()->put('header', 'Tambah Inventaris Baru');
-        return view('clinic.create');
+        return view('preclinic.create');
     }
 
     /**
@@ -40,15 +40,15 @@ class InventoryClinicsController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $inventory = new InventoryClinics();
+        $inventory = new InventoryPreClinic();
         $inventory->name = $request->input('name');
         $inventory->amount = $request->input('amount');
         $inventory->condition = $request->input('condition');
-        $inventory->image = $request->file('image')->store('inventory', 'public');
+        $inventory->image = $request->file('image')->store('pre-inventory', 'public');
 
         $inventory->save();
 
-        return redirect()->route('inventory.index')->with('success', 'Inventory created successfully!');
+        return redirect()->route('preinventory.index')->with('success', 'Inventory created successfully!');
     }
 
     /**
@@ -64,10 +64,10 @@ class InventoryClinicsController extends Controller
      */
     public function edit(string $id)
     {
-        $inventory = InventoryClinics::find($id);
+        $inventory = InventoryPreClinic::find($id);
 
         session()->put('header', 'Update Inventaris');
-        return view('clinic.edit', compact('inventory'));
+        return view('preclinic.edit', compact('inventory'));
     }
 
     /**
@@ -82,7 +82,7 @@ class InventoryClinicsController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $inventory = InventoryClinics::find($id);
+        $inventory = InventoryPreClinic::find($id);
         $inventory->name = $request->input('name');
         $inventory->amount = $request->input('amount');
         $inventory->condition = $request->input('condition');
@@ -92,7 +92,7 @@ class InventoryClinicsController extends Controller
 
         $inventory->save();
 
-        return redirect()->route('inventory.index')->with('success', 'Inventory updated successfully!');
+        return redirect()->route('preinventory.index')->with('success', 'Inventory updated successfully!');
     }
 
     /**
@@ -100,9 +100,9 @@ class InventoryClinicsController extends Controller
      */
     public function destroy(string $id)
     {
-        $inventory = InventoryClinics::find($id);
+        $inventory = InventoryPreClinic::find($id);
         $inventory->delete();
 
-        return redirect()->route('inventory.index')->with('success', 'Inventory deleted successfully!');
+        return redirect()->route('preinventory.index')->with('success', 'Inventory deleted successfully!');
     }
 }
