@@ -54,12 +54,11 @@
     <div class="flex flex-col mx-5">
         <div class="card flex flex-col bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden">
             <div class="bg-primary text-white p-6 rounded-t-lg">
-                <h1 class="text-3xl font-bold mb-2">Update Description</h1>
                 @if ($desc && $desc->title)
-                    <p class="text-lg">Current Title: {{ $desc->title }}<br>Current Description: {{ $desc->description }}
+                    <p class="text-xl">Current Title: {{ $desc->title }}<br>Current Description: {{ $desc->description }}
                     </p>
                 @else
-                    <p class="text-lg">Current Title: Kemenkes<br>Current Description: Lorem Ipsum</p>
+                    <p class="text-xl">Current Title: Kemenkes<br>Current Description: Lorem Ipsum</p>
                 @endif
             </div>
 
@@ -92,7 +91,7 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <button class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded mt-4"
+                    <button class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded mt-4"
                         type="submit">
                         Update Description
                     </button>

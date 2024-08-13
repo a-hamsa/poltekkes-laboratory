@@ -14,6 +14,8 @@ class InventoryClinicsController extends Controller
     public function index()
     {
         $inventories = InventoryClinics::all();
+
+        session()->put('header', 'Inventory');
         return view('clinic.invent', compact('inventories'));
     }
 
@@ -22,6 +24,7 @@ class InventoryClinicsController extends Controller
      */
     public function create()
     {
+        session()->put('header', 'Create Inventory');
         return view('clinic.create');
     }
 
@@ -62,6 +65,8 @@ class InventoryClinicsController extends Controller
     public function edit(string $id)
     {
         $inventory = InventoryClinics::find($id);
+
+        session()->put('header', 'Update Inventory');
         return view('clinic.edit', compact('inventory'));
     }
 

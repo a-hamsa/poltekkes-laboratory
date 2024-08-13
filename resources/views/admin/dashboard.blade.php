@@ -30,14 +30,16 @@
         <!-- Sidebar -->
         <div class="hidden flex md:flex sidebar w-64 text-gray-200 min-h-screen">
             <nav class="flex flex-col flex-grow mt-10">
-                <a href="#"
+                <a href="{{ route('dashboard') }}"
                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
-                <a href="#"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Profile</a>
-                <a href="#"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Settings</a>
-                <a href="#"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Logout</a>
+                <a href="{{ route('dashboarddesc') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Description</a>
+                <a href="{{ route('dashboardbanner') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Banner</a>
+                <a href="{{ route('dashboardschedule') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Schedule</a>
+                <a href="{{ route('inventory.index') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventory</a>
             </nav>
         </div>
         <!-- Main Content -->

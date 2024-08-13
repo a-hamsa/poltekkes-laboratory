@@ -7,21 +7,20 @@ use App\Models\Schedule;
 use App\Models\Description;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        Session::put('header', 'Dashboard');
+        session()->put('header', 'Dashboard');
         return view('admin.home');
     }
 
     public function banner()
     {
         $banner = Banner::first(); // assuming you have a banner with id 1
-        Session::put('header', 'Banner');
+        session()->put('header', 'Banner');
         return view('admin.banner', compact('banner'));
     }
 
@@ -54,7 +53,7 @@ class DashboardController extends Controller
     {
         $desc = Description::first(); // assuming you have a banner with id 1
 
-        Session::put('header', 'Description');
+        session()->put('header', 'Description');
         return view('admin.desc', compact('desc'));
     }
 
@@ -90,7 +89,7 @@ class DashboardController extends Controller
     {
         $schedule = Schedule::first(); // assuming you have a banner with id 1
 
-        Session::put('header', 'Schedule');
+        session()->put('header', 'Schedule');
         return view('admin.schedule', compact('schedule'));
     }
     public function updateSchedule(Request $request)
