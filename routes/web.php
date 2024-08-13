@@ -17,9 +17,9 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::get('/dashboard/banner', [DashboardController::class, 'banner'])->middleware('auth');
-Route::get('/dashboard/description', [DashboardController::class, 'desc'])->middleware('auth');
-Route::get('/dashboard/schedule', [DashboardController::class, 'schedule'])->middleware('auth');
+Route::get('/dashboard/banner', [DashboardController::class, 'banner'])->name('dashboardbanner')->middleware('auth');
+Route::get('/dashboard/description', [DashboardController::class, 'desc'])->name('dashboarddesc')->middleware('auth');
+Route::get('/dashboard/schedule', [DashboardController::class, 'schedule'])->name('dashboardschedule')->middleware('auth');
 
 
 Route::post('/banner', [DashboardController::class, 'updateBanner'])->name('dashboard.banner')->middleware('auth');
