@@ -71,12 +71,16 @@
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Jadwal</a>
                         <a href="{{ route('inventory.index') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                        <a href="{{ route('stok.index') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok Bahan</a>
                         <a href="{{ route('dashboarddosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Dosen</a>
                         <a href="{{ route('dashboardtatib') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Tatib</a>
                         <a href="{{ route('dashboardsop') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                        <a href="{{ route('dashboardabsen') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
                 <div x-data="{
@@ -105,12 +109,16 @@
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Jadwal</a>
                         <a href="{{ route('preinventory.index') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                        <a href="{{ route('prestok.index') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok Bahan</a>
                         <a href="{{ route('predosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Dosen</a>
                         <a href="{{ route('pretatib') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Tatib</a>
                         <a href="{{ route('presop') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                        <a href="{{ route('preabsen') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
 

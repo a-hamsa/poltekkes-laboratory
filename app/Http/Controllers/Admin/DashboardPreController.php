@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AbsenPreclinic;
 use App\Models\BannerPreklinik;
 use App\Models\DescriptionPreklinik;
 use App\Models\DosenPreklinik;
@@ -214,4 +215,38 @@ class DashboardPreController extends Controller
 
         return redirect()->back()->with('success', 'Schedule updated successfully!');
     }
+
+    public function absen()
+    {
+        $absen = AbsenPreclinic::first(); // assuming you have a banner with id 1
+
+        session()->put('header', 'Link Absensi');
+        return view('preclinic.absen', compact('absen'));
+    }
+
+    public function updateAbsen(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'link' => 'required|string',
+        ]);
+
+        $section = AbsenPreclinic::first();
+        if ($section) {
+            $section->update([
+                'link' => $request->input('link'),
+            ]);
+        } else {
+            // create a new record if no record exists
+            $section = AbsenPreclinic::create([
+                'link' => $request->input('link'),
+            ]);
+        }
+
+        // Save the changes
+        $section->save();
+
+        return redirect()->back()->with('success', 'Description updated successfully!');
+    }
+
 }

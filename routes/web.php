@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DashboardPreController;
 use App\Http\Controllers\Admin\InventoryClinicsController;
 use App\Http\Controllers\Admin\InventoryPreclinisController;
+use App\Http\Controllers\Admin\StokClinicController;
+use App\Http\Controllers\Admin\StokPreclinicController;
 
 Route::get('/', function () {
     return view('home');
@@ -31,6 +33,7 @@ Route::get('/dashboard/schedule', [DashboardController::class, 'schedule'])->nam
 Route::get('/dashboard/dosen', [DashboardController::class, 'dosen'])->name('dashboarddosen')->middleware('auth');
 Route::get('/dashboard/tatib', [DashboardController::class, 'tatib'])->name('dashboardtatib')->middleware('auth');
 Route::get('/dashboard/sop', [DashboardController::class, 'sop'])->name('dashboardsop')->middleware('auth');
+Route::get('/dashboard/absen', [DashboardController::class, 'absen'])->name('dashboardabsen')->middleware('auth');
 
 //post
 Route::post('/banner', [DashboardController::class, 'updateBanner'])->name('dashboard.banner')->middleware('auth');
@@ -39,6 +42,7 @@ Route::post('/schedule', [DashboardController::class, 'updateSchedule'])->name('
 Route::post('/dosen', [DashboardController::class, 'updateDosen'])->name('dashboard.dosen')->middleware('auth');
 Route::post('/tatib', [DashboardController::class, 'updateTatib'])->name('dashboard.tatib')->middleware('auth');
 Route::post('/sop', [DashboardController::class, 'updateSop'])->name('dashboard.sop')->middleware('auth');
+Route::post('/absen', [DashboardController::class, 'updateAbsen'])->name('dashboard.absen')->middleware('auth');
 
 // Inventory routes
 Route::get('/dashboard/inventory', [InventoryClinicsController::class, 'index'])->name('inventory.index');
@@ -49,6 +53,14 @@ Route::get('/dashboard/inventory/{id}/edit', [InventoryClinicsController::class,
 Route::put('/dashboard/inventory/{id}', [InventoryClinicsController::class, 'update'])->name('inventory.update');
 Route::delete('/dashboard/inventory/{id}', [InventoryClinicsController::class, 'destroy'])->name('inventory.destroy');
 
+//STOK
+Route::get('/dashboard/stok', [StokClinicController::class, 'index'])->name('stok.index');
+Route::get('/dashboard/stok/create', [StokClinicController::class, 'create'])->name('stok.create');
+Route::post('/dashboard/stok', [StokClinicController::class, 'store'])->name('stok.store');
+Route::get('/dashboard/stok/{id}', [StokClinicController::class, 'show'])->name('stok.show');
+Route::get('/dashboard/stok/{id}/edit', [StokClinicController::class, 'edit'])->name('stok.edit');
+Route::put('/dashboard/stok/{id}', [StokClinicController::class, 'update'])->name('stok.update');
+Route::delete('/dashboard/stok/{id}', [StokClinicController::class, 'destroy'])->name('stok.destroy');
 
 
 //PRE-KLINIK
@@ -59,6 +71,7 @@ Route::get('/dashboard/pre/schedule', [DashboardPreController::class, 'schedule'
 Route::get('/dashboard/pre/dosen', [DashboardPreController::class, 'dosen'])->name('predosen')->middleware('auth');
 Route::get('/dashboard/pre/tatib', [DashboardPreController::class, 'tatib'])->name('pretatib')->middleware('auth');
 Route::get('/dashboard/pre/sop', [DashboardPreController::class, 'sop'])->name('presop')->middleware('auth');
+Route::get('/dashboard/preabsen', [DashboardPreController::class, 'absen'])->name('preabsen')->middleware('auth');
 
 //post
 Route::post('/prebanner', [DashboardPreController::class, 'updateBanner'])->name('pre.banner')->middleware('auth');
@@ -67,6 +80,7 @@ Route::post('/preschedule', [DashboardPreController::class, 'updateSchedule'])->
 Route::post('/predosen', [DashboardPreController::class, 'updateDosen'])->name('pre.dosen')->middleware('auth');
 Route::post('/pretatib', [DashboardPreController::class, 'updateTatib'])->name('pre.tatib')->middleware('auth');
 Route::post('/presop', [DashboardPreController::class, 'updateSop'])->name('pre.sop')->middleware('auth');
+Route::post('/preabsen', [DashboardPreController::class, 'updateAbsen'])->name('dashboard.preabsen')->middleware('auth');
 
 // Inventory routes
 Route::get('/dashboard/pre/inventory', [InventoryPreclinisController::class, 'index'])->name('preinventory.index');
@@ -76,3 +90,12 @@ Route::get('/dashboard/pre/inventory/{id}', [InventoryPreclinisController::class
 Route::get('/dashboard/pre/inventory/{id}/edit', [InventoryPreclinisController::class, 'edit'])->name('preinventory.edit');
 Route::put('/dashboard/pre/inventory/{id}', [InventoryPreclinisController::class, 'update'])->name('preinventory.update');
 Route::delete('/dashboard/pre/inventory/{id}', [InventoryPreclinisController::class, 'destroy'])->name('preinventory.destroy');
+
+//STOK
+Route::get('/dashboard/pre/stok', [StokPreclinicController::class, 'index'])->name('prestok.index');
+Route::get('/dashboard/pre/stok/create', [StokPreclinicController::class, 'create'])->name('prestok.create');
+Route::post('/dashboard/pre/stok', [StokPreclinicController::class, 'store'])->name('prestok.store');
+Route::get('/dashboard/pre/stok/{id}', [StokPreclinicController::class, 'show'])->name('prestok.show');
+Route::get('/dashboard/pre/stok/{id}/edit', [StokPreclinicController::class, 'edit'])->name('prestok.edit');
+Route::put('/dashboard/pre/stok/{id}', [StokPreclinicController::class, 'update'])->name('prestok.update');
+Route::delete('/dashboard/pre/stok/{id}', [StokPreclinicController::class, 'destroy'])->name('prestok.destroy');

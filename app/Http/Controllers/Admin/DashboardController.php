@@ -7,6 +7,7 @@ use App\Models\Schedule;
 use App\Models\Description;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Absen;
 use App\Models\ClinicDosens;
 use App\Models\ClinicTatib;
 use App\Models\SopClinic;
@@ -217,6 +218,39 @@ class DashboardController extends Controller
         $tatib->save();
 
         return redirect()->back()->with('success', 'Schedule updated successfully!');
+    }
+
+    public function absen()
+    {
+        $absen = Absen::first(); // assuming you have a banner with id 1
+
+        session()->put('header', 'Link Absensi');
+        return view('clinic.absen', compact('absen'));
+    }
+
+    public function updateAbsen(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'link' => 'required|string',
+        ]);
+
+        $section = Absen::first();
+        if ($section) {
+            $section->update([
+                'link' => $request->input('link'),
+            ]);
+        } else {
+            // create a new record if no record exists
+            $section = Absen::create([
+                'link' => $request->input('link'),
+            ]);
+        }
+
+        // Save the changes
+        $section->save();
+
+        return redirect()->back()->with('success', 'Description updated successfully!');
     }
 
 }

@@ -45,8 +45,8 @@
                 <label for="condition" class="block text-lg font-semibold mb-2">Condition:</label>
                 <select id="condition" name="condition" required
                     class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="good">Good</option>
-                    <option value="broken">Broken</option>
+                    <option value="good">Baik</option>
+                    <option value="broken">Rusak</option>
                 </select>
             </div>
 

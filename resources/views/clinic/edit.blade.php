@@ -63,8 +63,8 @@
                 <select
                     class="form-control w-full border border-gray-300 p-2 rounded @error('condition') border-red-500 @enderror"
                     id="condition" name="condition" required>
-                    <option value="good" {{ $inventory->condition == 'good' ? 'selected' : '' }}>Good</option>
-                    <option value="broken" {{ $inventory->condition == 'broken' ? 'selected' : '' }}>Broken</option>
+                    <option value="good" {{ $inventory->condition == 'good' ? 'selected' : '' }}>Baik</option>
+                    <option value="broken" {{ $inventory->condition == 'broken' ? 'selected' : '' }}>Rusak</option>
                 </select>
                 @error('condition')
                     <span class="text-red-500 mt-2 text-lg">
