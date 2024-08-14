@@ -76,9 +76,9 @@
                             Jadwal
                         </a>
                         <a href="{{ route('inventory.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Inventaris' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
-                            Inventaris
-                        </a>
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                        <a href="{{ route('stok.index') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok Bahan</a>
                         <a href="{{ route('dashboarddosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Dosen
@@ -88,10 +88,9 @@
                             Tatib
                         </a>
                         <a href="{{ route('dashboardsop') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'SOP dan Instruksi Kerja' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
-                            SOP
-                        </a>
-
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                        <a href="{{ route('dashboardabsen') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
                 <div x-data="{
@@ -125,9 +124,9 @@
                             Jadwal
                         </a>
                         <a href="{{ route('preinventory.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Inventaris Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
-                            Inventaris
-                        </a>
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                        <a href="{{ route('prestok.index') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok Bahan</a>
                         <a href="{{ route('predosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Dosen
@@ -137,9 +136,9 @@
                             Tatib
                         </a>
                         <a href="{{ route('presop') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'SOP dan Instruksi kerja' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
-                            SOP
-                        </a>
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                        <a href="{{ route('preabsen') }}"
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
 
