@@ -24,7 +24,9 @@
 
 <body class="bg-gray-100 text-gray-800">
     <div class="flex m-4 w-24 lg:w-32">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
+        <a href="{{ route('home') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
+        </a>
     </div>
     <div class="flex">
         <!-- Sidebar -->

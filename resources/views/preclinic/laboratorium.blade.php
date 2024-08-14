@@ -103,8 +103,14 @@
 </head>
 
 <body class="bg-gray-100 text-gray-900">
-    <div class="flex m-4 w-24 lg:w-32">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
+    <div class="flex justify-between items-center m-4">
+        <div class="w-24 lg:w-32">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="{{ route('home') }}" class="text-primary hover:text-gray-900 font-bold">Home</a>
+            <a href="{{ route('dashboard') }}" class="text-primary hover:text-gray-900 font-bold">Dasboard</a>
+        </div>
     </div>
     <div class="hero flex items-center justify-center text-center py-24 text-white fade-in">
         <div>
@@ -122,47 +128,43 @@
         <div class="standards fade-in">
             <div class="title text-2xl font-bold mb-8">Standart & Formulir Kegiatan Laboratorium</div>
             <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                     <button id="open-popup" data-pdf="{{ $dosen }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-flask mb-2"></i>
-                        IK - Laboratorium
+                        Dosen
                     </button>
                     <button id="open-popup" data-pdf="{{ $sop }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-file-alt mb-2"></i>
-                        SOP Laboratorium
+                        SOP
                     </button>
                     <button id="open-popup" data-pdf="{{ $schedule }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>
-                        SOP Peralatan Workshop
+                        Jadwal
                     </button>
                     <button id="open-popup" data-pdf="{{ $tatib }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-gavel mb-2"></i>
-                        Tata Tertib Lab
+                        Tata Tertib
                     </button>
-                    <a href="{{ route('klinik.inventory') }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                    <a href="{{ route('preklinik.inventory') }}"
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 lg:col-start-2">
                         <i class="fas fa-clipboard-list mb-2"></i>
-                        Inventaris Lab
+                        Inventaris
                     </a>
-                    <button id="open-popup" data-pdf="{{ asset('storage/schedules/1723542184.pdf') }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                    <a href=" {{ $absen }}"
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-user-check mb-2"></i>
                         Absensi Lab
-                    </button>
-                    <button id="open-popup" data-pdf="{{ $ }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
+                    </a>
+                    <a href="{{ route('preklinik.stock') }}"
+                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 md:col-start-2 lg:col-start-auto">
                         <i class="fas fa-user-clock mb-2"></i>
-                        Absensi Praktikum
-                    </button>
-                    <button id="open-popup" data-pdf="{{ asset('storage/schedules/1723542184.pdf') }}"
-                        class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center">
-                        <i class="fas fa-chalkboard-teacher mb-2"></i>
-                        Pemakaian Lab untuk praktek
-                    </button>
+                        Stok Bahan
+                </a>
+
                 </div>
             </div>
         </div>

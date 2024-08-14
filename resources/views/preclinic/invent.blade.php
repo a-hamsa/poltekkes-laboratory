@@ -6,6 +6,7 @@
     <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
         <thead class="bg-primary text-white uppercase text-sm leading-normal">
             <tr>
+                <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">No</th>
                 <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Nama</th>
                 <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Jumlah</th>
                 <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Kondisi</th>
@@ -16,6 +17,7 @@
         <tbody class="bg-white divide-y divide-gray-200">
             @foreach($inventories as $inventory)
             <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">{{ $inventory->name }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $inventory->amount }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $inventory->condition }}</td>

@@ -52,6 +52,7 @@
             <thead class="bg-primary text-white uppercase text-sm leading-normal">
                 <tr>
                     <!-- Sort by name -->
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">No</th>
                     <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Gambar</th>
                     <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">
                         <a
@@ -70,6 +71,8 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach ($inventories as $inventory)
                     <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
+                            {{ $loop->iteration }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center flex items-center justify-center">
                             <img src="{{ asset('storage/' . $inventory->image) }}" alt="Inventory Image"
                                 class="w-12 h-12 object-cover rounded">
