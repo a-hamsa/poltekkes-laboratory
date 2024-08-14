@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KlinikController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -13,8 +14,14 @@ Route::get('/', function () {
     return view('home');
 })->name('home');;
 
+Route::get('/test', function () {
+    return view('test');
+});;
+
 Route::get('klinik', [KlinikController::class, 'index'])->name('klinik');
 Route::get('preklinik', [KlinikController::class, 'index'])->name('preklinik');
+Route::get('klinik/inventory', [InventoryController::class, 'index'])->name('klinik.inventory');
+Route::get('preklinik/inventory', [InventoryController::class, 'index'])->name('preklinik.inventory');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);

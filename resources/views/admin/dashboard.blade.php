@@ -31,7 +31,7 @@
         <div class="hidden flex md:flex sidebar w-64 text-gray-200 min-h-screen">
             <nav class="flex flex-col flex-grow mt-10">
                 <a href="{{ route('dashboard') }}"
-                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
+                    class="block py-2.5 px-4 rounded font-bold transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
 
                 {{-- <div x-data="{ open: {{ $klinik ? 'true' : 'false' }} }" x-init="open ={{ !$klinik ? 'true' : 'false' }}" class="space-y-2">
                     <button @click="open = !open" 
@@ -53,7 +53,7 @@
                 }" x-init="open = JSON.parse(localStorage.getItem('open_klinik')) || false" class="space-y-2" x-cloack>
 
                     <button @click="toggleOpen()"
-                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
+                        class="block py-2.5 px-4 rounded transition duration-200 font-bold hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
                         <span>Klinik</span>
                         <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
                             class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
@@ -64,19 +64,34 @@
                     </button>
                     <div x-show="open" class="space-y-2 ml-3" x-cloak>
                         <a href="{{ route('dashboardbanner') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Banner</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Banner Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Banner
+                        </a>
                         <a href="{{ route('dashboarddesc') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Deskripsi</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Deskripsi Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Deskripsi
+                        </a>
                         <a href="{{ route('dashboardschedule') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Jadwal</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Jadwal Pemakaian Lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Jadwal
+                        </a>
                         <a href="{{ route('inventory.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Inventaris' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Inventaris
+                        </a>
                         <a href="{{ route('dashboarddosen') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Dosen</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Dosen
+                        </a>
                         <a href="{{ route('dashboardtatib') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Tatib</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Tata tertib lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Tatib
+                        </a>
                         <a href="{{ route('dashboardsop') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'SOP dan Instruksi Kerja' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            SOP
+                        </a>
+
                     </div>
                 </div>
                 <div x-data="{
@@ -85,9 +100,9 @@
                         this.open = !this.open;
                         localStorage.setItem('open_preklinik', JSON.stringify(this.open));
                     }
-                }" x-init="open = JSON.parse(localStorage.getItem('open_preklinik')) || false" class="space-y-2" x-cloak>
+                }" x-init="open = JSON.parse(localStorage.getItem('open_preklinik')) || false" class="space-y-2" x-cloack>
                     <button @click="toggleOpen()"
-                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
+                        class="block py-2.5 px-4 rounded transition duration-200 font-bold hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
                         <span>Pre-Klinik</span>
                         <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
                             class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
@@ -98,19 +113,33 @@
                     </button>
                     <div x-show="open" class="space-y-2 ml-3" x-cloak>
                         <a href="{{ route('prebanner') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Banner</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Banner Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Banner
+                        </a>
                         <a href="{{ route('predesc') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Deskripsi</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Deskripsi Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Deskripsi
+                        </a>
                         <a href="{{ route('preschedule') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Jadwal</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Jadwal Pemakaian Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Jadwal
+                        </a>
                         <a href="{{ route('preinventory.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Inventaris Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Inventaris
+                        </a>
                         <a href="{{ route('predosen') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Dosen</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Dosen
+                        </a>
                         <a href="{{ route('pretatib') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Tatib</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Tata Tertib lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            Tatib
+                        </a>
                         <a href="{{ route('presop') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'SOP dan Instruksi kerja' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                            SOP
+                        </a>
                     </div>
                 </div>
 

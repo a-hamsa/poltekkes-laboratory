@@ -49,7 +49,7 @@ class DashboardController extends Controller
         $banner->image = $imageUrl;
         $banner->save();
 
-        return redirect()->back()->with('success', 'Banner updated successfully!');
+        return redirect()->back()->with('success', 'Banner berhasil diperbaharui!');
     }
 
     public function desc()
@@ -85,7 +85,7 @@ class DashboardController extends Controller
         // Save the changes
         $section->save();
 
-        return redirect()->back()->with('success', 'Description updated successfully!');
+        return redirect()->back()->with('success', 'Deskripsi berhasil diperbaharui!');
     }
 
     public function schedule()
@@ -117,7 +117,7 @@ class DashboardController extends Controller
         $schedule->pdf_file = $pdfFileUrl;
         $schedule->save();
 
-        return redirect()->back()->with('success', 'Schedule updated successfully!');
+        return redirect()->back()->with('success', 'Jadwal berhasil diperbaharui!');
     }
 
     public function dosen()
@@ -150,7 +150,7 @@ class DashboardController extends Controller
         $dosen->pdf_file = $pdfFileUrl;
         $dosen->save();
 
-        return redirect()->back()->with('success', 'Schedule updated successfully!');
+        return redirect()->back()->with('success', 'Jadwal berhasil diperbaharui!');
     }
 
     public function tatib()
@@ -183,7 +183,7 @@ class DashboardController extends Controller
         $tatib->pdf_file = $pdfFileUrl;
         $tatib->save();
 
-        return redirect()->back()->with('success', 'Schedule updated successfully!');
+        return redirect()->back()->with('success', 'Jadwal berhasil diperbaharui!');
     }
 
     public function sop()
@@ -216,7 +216,7 @@ class DashboardController extends Controller
         $tatib->pdf_file = $pdfFileUrl;
         $tatib->save();
 
-        return redirect()->back()->with('success', 'Schedule updated successfully!');
+        return redirect()->back()->with('success', 'Jadwal berhasil diperbaharui!');
     }
 
 }

@@ -10,7 +10,7 @@
                 <embed src="{{ asset($dosen->pdf_file) }}" type="application/pdf" width="100%" height="400px"
                     class="border border-gray-300 rounded-lg shadow-md">
             @else
-                <p class="text-gray-600">No PDF file uploaded.</p>
+                <p class="text-gray-600">Belum ada PDF untuk Ditampilkan</p>
             @endif
         </div>
 

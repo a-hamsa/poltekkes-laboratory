@@ -6,10 +6,10 @@
         <div class="card flex flex-col bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden">
             <div class="bg-primary text-white p-6 rounded-t-lg">
                 @if ($desc && $desc->title)
-                    <p class="text-xl">Current Title: {{ $desc->title }}<br>Current Description: {{ $desc->description }}
+                    <p class="text-xl">Judul saat ini: {{ $desc->title }}<br>Deskripsi saat ini: {{ $desc->description }}
                     </p>
                 @else
-                    <p class="text-xl">Current Title: Kemenkes<br>Current Description: Lorem Ipsum</p>
+                    <p class="text-xl">Judul saat ini: Kemenkes<br>Deskripsi saat ini: Lorem Ipsum</p>
                 @endif
             </div>
 
@@ -18,7 +18,7 @@
                 <div class="flex flex-wrap flex-col">
                     <div class="w-full mb-6">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
-                            Title
+                            Judul
                         </label>
                         <input
                             class="appearance-none w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
@@ -30,7 +30,7 @@
 
                     <div class="w-full">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
-                            Description
+                            Deskripsi
                         </label>
                         <textarea
                             class="appearance-none w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
@@ -44,7 +44,7 @@
                 <div class="flex justify-end">
                     <button class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded mt-4"
                         type="submit">
-                        Update Description
+                        Update
                     </button>
                 </div>
             </form>

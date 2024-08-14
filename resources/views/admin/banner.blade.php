@@ -61,7 +61,7 @@
                     @csrf
 
                     <div class="form-group flex flex-col">
-                        <label for="image" class="mb- text-lg font-semibold">Image</label>
+                        <label for="image" class="mb-2 text-lg font-semibold">Upload Gambar</label>
                         <input type="file" name="image" id="image"
                             class="form-control border border-gray-300 p-2 rounded @error('image') border-red-500 @enderror">
                         @error('image')
@@ -73,7 +73,7 @@
 
                     <div class="form-group flex justify-end">
                         <button type="submit" class="btn bg-primary hover:bg-primary-dark transition duration-300 ease-in-out text-white py-2 px-4 rounded">
-                            Update Banner
+                            Update
                         </button>
                     </div>
                 </form>
