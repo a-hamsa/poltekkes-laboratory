@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KlinikController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -9,8 +10,11 @@ use App\Http\Controllers\Admin\InventoryClinicsController;
 use App\Http\Controllers\Admin\InventoryPreclinisController;
 
 Route::get('/', function () {
-    return view('laboratorium');
-})->name('laboratorium');;
+    return view('home');
+})->name('home');;
+
+Route::get('klinik', [KlinikController::class, 'index'])->name('klinik');
+Route::get('preklinik', [KlinikController::class, 'index'])->name('preklinik');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);

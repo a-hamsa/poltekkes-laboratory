@@ -33,8 +33,26 @@
                 <a href="{{ route('dashboard') }}"
                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
 
-                <div x-data="{ open: false }" x-init="open = true" class="space-y-2">
-                    <button @click="open = !open"
+                {{-- <div x-data="{ open: {{ $klinik ? 'true' : 'false' }} }" x-init="open ={{ !$klinik ? 'true' : 'false' }}" class="space-y-2">
+                    <button @click="open = !open" 
+                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
+                        <span>Klinik</span>
+                        <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
+                            class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button> --}}
+                <div x-data="{
+                    open: JSON.parse(localStorage.getItem('open_klinik')) || false,
+                    toggleOpen() {
+                        this.open = !this.open;
+                        localStorage.setItem('open_klinik', JSON.stringify(this.open));
+                    }
+                }" x-init="open = JSON.parse(localStorage.getItem('open_klinik')) || false" class="space-y-2" x-cloack>
+
+                    <button @click="toggleOpen()"
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
                         <span>Klinik</span>
                         <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
@@ -61,8 +79,14 @@
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
                     </div>
                 </div>
-                <div x-data="{ open: false }" x-init="open = true" class="space-y-2">
-                    <button @click="open = !open"
+                <div x-data="{
+                    open: JSON.parse(localStorage.getItem('open_preklinik')) || false,
+                    toggleOpen() {
+                        this.open = !this.open;
+                        localStorage.setItem('open_preklinik', JSON.stringify(this.open));
+                    }
+                }" x-init="open = JSON.parse(localStorage.getItem('open_preklinik')) || false" class="space-y-2" x-cloak>
+                    <button @click="toggleOpen()"
                         class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
                         <span>Pre-Klinik</span>
                         <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
