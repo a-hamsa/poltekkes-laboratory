@@ -20,7 +20,7 @@
         }
 
         .hero {
-            background: rgba(0, 0, 0, .65) url('{{ asset('images/building.png') }}');
+            background: rgba(0, 0, 0, .65) url('{{ asset($banner) }}');
             background-blend-mode: darken;
             height: 80vh;
             background-size: cover;
@@ -60,9 +60,8 @@
     </div>
     <div class="hero flex items-center justify-center text-center py-24 text-white fade-in">
         <div>
-            <h1 class="text-5xl font-bold mb-4">Laboratorium</h1>
-            <p class="text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua.</p>
+            <h1 class="text-5xl font-bold mb-4">{{ $title }}</h1>
+            <p class="text-xl">{{ $description }}</p>
         </div>
     </div>
 
