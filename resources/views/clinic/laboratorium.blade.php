@@ -114,8 +114,12 @@
     </div>
     <div class="hero flex items-center justify-center text-center py-24 text-white fade-in">
         <div>
+            <div class="flex justify-center mb-4">
+                <img src="{{ asset('images/kemen.png') }}" alt="Logo 2" class="w-12 h-12 mr-4">
+                <img src="{{ asset('images/blu.png') }}" alt="Logo 1" class="w-12 h-12">
+            </div>
             <h1 class="text-5xl font-bold mb-4">Laboratorium</h1>
-            <p class="text-xl">Selamat Datang di Klinik Laboratorium</p>
+            <p class="text-xl">Selamat Datang</p>
         </div>
     </div>
 
@@ -132,17 +136,17 @@
                     <button id="open-popup" data-pdf="{{ $dosen }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-flask mb-2"></i>
-                        Dosen
+                        Daftar Dosen
                     </button>
                     <button id="open-popup" data-pdf="{{ $sop }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-file-alt mb-2"></i>
-                        SOP
+                        SOP dan Instruksi Kerja
                     </button>
                     <button id="open-popup" data-pdf="{{ $schedule }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>
-                        Jadwal
+                        Jadwal Pemakaian Lab
                     </button>
                     <button id="open-popup" data-pdf="{{ $tatib }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
@@ -152,17 +156,17 @@
                     <a href="{{ route('klinik.inventory') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 lg:col-start-2">
                         <i class="fas fa-clipboard-list mb-2"></i>
-                        Inventaris
+                        Inventarisasi Alat
                     </a>
                     <a href=" {{ $absen }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-user-check mb-2"></i>
-                        Absensi Lab
+                        Absensi Mahasiswa
                     </a>
                     <a href="{{ route('klinik.stock') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 md:col-start-2 lg:col-start-auto">
                         <i class="fas fa-user-clock mb-2"></i>
-                        Stok Bahan
+                        Stok Bahan Habis Pakai
                     </a>
 
                 </div>
@@ -170,11 +174,11 @@
         </div>
     </div>
 
-    <!-- Floating Button -->
+    {{-- <!-- Floating Button -->
     <div class="floating-button">
         <a href="https://wa.me/62895360674654"
             class="px-4 py-2 bg-teal-600 text-white rounded-full shadow-lg hover:bg-teal-700 flex items-center justify-center fas fa-headset mr-2"></a>
-    </div>
+    </div> --}}
 
     <!-- Footer -->
     <div class="footer bg-lime-500 py-8 text-center text-white">
@@ -188,7 +192,7 @@
                 <p class="text-sm">Email: info@yourcompany.com</p>
             </div>
             <!-- Quick Links Section -->
-            <div class="quick-links mb-4">
+            {{-- <div class="quick-links mb-4">
                 <h3 class="text-lg font-semibold mb-2">Quick Links</h3>
                 <div class="flex flex-col space-y-2">
                     <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Maps</a>
@@ -197,7 +201,7 @@
                     <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Link 1</a>
                     <a href="#" class="text-white hover:text-black transition duration-300 ease-in-out">Link 2</a>
                 </div>
-            </div>
+            </div> --}}
             <!-- Social Media Section -->
             <div class="social-media mb-4">
                 <h3 class="text-lg font-semibold mb-2">Follow Us</h3>
