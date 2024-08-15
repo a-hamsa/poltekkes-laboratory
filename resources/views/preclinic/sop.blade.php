@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex flex-col mx-5">
+<div class="flex flex-col mx-5 max-w-full overflow-x-hidden">
 
     <div class="card flex flex-col bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden">
         <div class="card-body p-6">

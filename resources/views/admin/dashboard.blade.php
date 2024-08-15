@@ -34,18 +34,6 @@
             <nav class="flex flex-col flex-grow mt-10">
                 <a href="{{ route('dashboard') }}"
                     class="block py-2.5 px-4 rounded font-bold transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
-
-                {{-- <div x-data="{ open: {{ $klinik ? 'true' : 'false' }} }" x-init="open ={{ !$klinik ? 'true' : 'false' }}" class="space-y-2">
-                    <button @click="open = !open" 
-                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white w-full text-left flex items-center justify-between">
-                        <span>Klinik</span>
-                        <svg :class="open ? 'transform rotate-180' : 'transform rotate-0'"
-                            class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button> --}}
                 <div x-data="{
                     open: JSON.parse(localStorage.getItem('open_klinik')) || false,
                     toggleOpen() {
@@ -80,7 +68,8 @@
                         <a href="{{ route('inventory.index') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
                         <a href="{{ route('stok.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok Bahan</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok
+                            Bahan</a>
                         <a href="{{ route('dashboarddosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Dosen
@@ -128,7 +117,8 @@
                         <a href="{{ route('preinventory.index') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
                         <a href="{{ route('prestok.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok Bahan</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok
+                            Bahan</a>
                         <a href="{{ route('predosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Dosen
@@ -143,7 +133,6 @@
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
-
             </nav>
         </div>
         <!-- Main Content -->
@@ -213,10 +202,89 @@
             </button>
         </div>
     </div>
+    <!-- Mobile Navigation Bar -->
+    <div class="md:hidden mobile-navbar fixed inset-x-0 bottom-0 bg-gray-800 text-gray-200 flex justify-around py-3 shadow-lg z-50">
+        <a href="{{ route('dashboard') }}"
+            class="flex flex-col items-center transition duration-200 hover:bg-gray-700 hover:text-white py-2 px-3 rounded">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-7 7-7-7m14 0v10a1 1 0 01-1 1h-3m-10 0a1 1 0 01-1-1V10" />
+            </svg>
+            <span class="text-xs">Home</span>
+        </a>
+
+        <div x-data="{ open: false }" class="relative">
+            <button @click="open = !open"
+                class="flex flex-col items-center transition duration-200 hover:bg-gray-700 hover:text-white py-2 px-3 rounded">
+                <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+                <span class="text-xs">Klinik</span>
+            </button>
+            <!-- Dropdown for Klinik -->
+            <div x-show="open" @click.away="open = false"
+                class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-gray-200 rounded shadow-lg z-10 py-2 w-48">
+                <a href="{{ route('dashboardbanner') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Banner</a>
+                <a href="{{ route('dashboarddesc') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Deskripsi</a>
+                <a href="{{ route('dashboardschedule') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Jadwal</a>
+                <a href="{{ route('inventory.index') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Inventaris</a>
+            </div>
+        </div>
+
+        <div x-data="{ open: false }" class="relative">
+            <button @click="open = !open"
+                class="flex flex-col items-center transition duration-200 hover:bg-gray-700 hover:text-white py-2 px-3 rounded">
+                <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+                <span class="text-xs">Pre-Klinik</span>
+            </button>
+            <!-- Dropdown for Pre-Klinik -->
+            <div x-show="open" @click.away="open = false"
+                class="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-gray-800 text-gray-200 rounded shadow-lg z-10 py-2 w-48">
+                <a href="{{ route('prebanner') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Banner</a>
+                <a href="{{ route('predesc') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Deskripsi</a>
+                <a href="{{ route('preschedule') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Jadwal</a>
+                <a href="{{ route('preinventory.index') }}"
+                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Inventaris</a>
+            </div>
+        </div>
+    </div>
+
 
     <script src="//unpkg.com/alpinejs" defer></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.mobile-navbar');
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Downscroll - hide navbar
+                navbar.classList.add('translate-y-full');
+            } else {
+                // Upscroll - show navbar
+                navbar.classList.remove('translate-y-full');
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    });
         document.addEventListener('DOMContentLoaded', function() {
             const successMessage = '{{ session('success') }}';
             const errorMessage = '{{ session('error') }}';
