@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex flex-col mx-5">
+<div class="flex flex-col mx-5 max-w-full overflow-x-hidden">
 
     <div class="card flex flex-col bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden">
         <div class="card-body p-6">
@@ -10,7 +10,7 @@
                 <embed src="{{ asset($sop->pdf_file) }}" type="application/pdf" width="100%" height="400px"
                     class="border border-gray-300 rounded-lg shadow-md">
             @else
-                <p class="text-gray-600">No PDF file uploaded.</p>
+                <p class="text-gray-600">Belum ada PDF untuk Ditampilkan</p>
             @endif
         </div>
 
@@ -19,7 +19,7 @@
                 class="space-y-4">
                 @csrf
                 <div class="form-group flex flex-col">
-                    <label for="pdf_file" class="mb-2 text-lg font-semibold">SOP dan Instruksi Kerja PDF</label>
+                    <label for="pdf_file" class="mb-2 text-lg font-semibold">Upload PDF SOP & Instruksi Kerja</label>
                     <input type="file" name="pdf_file" id="pdf_file" required
                         class="form-control border border-gray-300 p-2 rounded @error('pdf_file') border-red-500 @enderror">
                     @error('pdf_file')

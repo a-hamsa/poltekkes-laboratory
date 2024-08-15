@@ -2,21 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KlinikController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\PreklinikController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StokClinicController;
 use App\Http\Controllers\Admin\DashboardPreController;
+use App\Http\Controllers\Admin\StokPreclinicController;
 use App\Http\Controllers\Admin\InventoryClinicsController;
 use App\Http\Controllers\Admin\InventoryPreclinisController;
-use App\Http\Controllers\Admin\StokClinicController;
-use App\Http\Controllers\Admin\StokPreclinicController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');;
 
 Route::get('klinik', [KlinikController::class, 'index'])->name('klinik');
-Route::get('preklinik', [KlinikController::class, 'index'])->name('preklinik');
+Route::get('preklinik', [PreklinikController::class, 'index'])->name('preklinik');
+Route::get('klinik/inventory', [KlinikController::class, 'inventory'])->name('klinik.inventory');
+Route::get('preklinik/inventory', [PreklinikController::class, 'inventory'])->name('preklinik.inventory');
+Route::get('klinik/stock', [KlinikController::class, 'stock'])->name('klinik.stock');
+Route::get('preklinik/stock', [PreklinikController::class, 'stock'])->name('preklinik.stock');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);

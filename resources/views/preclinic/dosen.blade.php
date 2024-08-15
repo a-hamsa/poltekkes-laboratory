@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex flex-col mx-5">
+<div class="flex flex-col mx-5 max-w-full overflow-x-hidden">
 
     <div class="card flex flex-col bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden">
         <div class="card-body p-6">
@@ -10,7 +10,7 @@
                 <embed src="{{ asset($dosen->pdf_file) }}" type="application/pdf" width="100%" height="400px"
                     class="border border-gray-300 rounded-lg shadow-md">
             @else
-                <p class="text-gray-600">No PDF file uploaded.</p>
+                <p class="text-gray-600">Belum ada PDF untuk Ditampilkan</p>
             @endif
         </div>
 

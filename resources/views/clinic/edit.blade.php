@@ -35,7 +35,7 @@
             @method('PUT')
 
             <div class="form-group">
-                <label for="name" class="block text-lg font-semibold mb-2">Name:</label>
+                <label for="name" class="block text-lg font-semibold mb-2">Nama:</label>
                 <input type="text"
                     class="form-control w-full border border-gray-300 p-2 rounded @error('name') border-red-500 @enderror"
                     id="name" name="name" value="{{ $inventory->name }}" required>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-group">
-                <label for="amount" class="block text-lg font-semibold mb-2">Amount:</label>
+                <label for="amount" class="block text-lg font-semibold mb-2">Jumlah:</label>
                 <input type="number"
                     class="form-control w-full border border-gray-300 p-2 rounded @error('amount') border-red-500 @enderror"
                     id="amount" name="amount" value="{{ $inventory->amount }}" required>
@@ -59,11 +59,11 @@
             </div>
 
             <div class="form-group">
-                <label for="condition" class="block text-lg font-semibold mb-2">Condition:</label>
+                <label for="condition" class="block text-lg font-semibold mb-2">Kondisi:</label>
                 <select
                     class="form-control w-full border border-gray-300 p-2 rounded @error('condition') border-red-500 @enderror"
                     id="condition" name="condition" required>
-                    <option value="good" {{ $inventory->condition == 'good' ? 'selected' : '' }}>Baik</option>
+                    <option value="good" {{ $inventory->condition == 'good' ? 'selected' : '' }}>Berfungsi</option>
                     <option value="broken" {{ $inventory->condition == 'broken' ? 'selected' : '' }}>Rusak</option>
                 </select>
                 @error('condition')
@@ -74,7 +74,7 @@
             </div>
 
             <div class="form-group">
-                <label for="image" class="block text-lg font-semibold mb-2">Image:</label>
+                <label for="image" class="block text-lg font-semibold mb-2">Gambar:</label>
                 <input type="file"
                     class="form-control w-full border border-gray-300 p-2 rounded @error('image') border-red-500 @enderror"
                     id="image" name="image">
@@ -96,7 +96,7 @@
                 </button>
                 <a href="{{ route('inventory.index') }}"
                     class="btn bg-gray-300 hover:bg-gray-400 transition duration-300 ease-in-out text-gray-800 py-2 px-4 rounded">
-                    Cancel
+                    Batal
                 </a>
             </div>
         </form>

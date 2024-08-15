@@ -16,17 +16,7 @@
                     <p class="mt-2 text-gray-600">Content goes here...</p>
                 </div>
             </div>
-            <!-- Mobile Sidebar -->
-            <div class="md:hidden fixed inset-x-0 bottom-0 bg-gray-800 text-gray-200 flex justify-around py-2">
-                <a href="#"
-                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Home</a>
-                <a href="#"
-                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Profile</a>
-                <a href="#"
-                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Settings</a>
-                <a href="#"
-                    class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Logout</a>
-            </div>
+            
         </main>
     </div>
 @endsection

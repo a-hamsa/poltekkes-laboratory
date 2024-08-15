@@ -53,7 +53,7 @@ class DashboardPreController extends Controller
     {
         $desc = DescriptionPreklinik::first(); // assuming you have a banner with id 1
 
-        session()->put('header', 'Deskripsi Klinik');
+        session()->put('header', 'Deskripsi Pre-Klinik');
         return view('preclinic.desc', compact('desc'));
     }
 
@@ -121,7 +121,7 @@ class DashboardPreController extends Controller
     {
         $dosen = DosenPreklinik::first(); // assuming you have a banner with id 1
 
-        session()->put('header', 'Daftar Nama Dosen');
+        session()->put('header', 'Daftar Nama Dosen Pre-Klinik');
         return view('preclinic.dosen', compact('dosen'));
     }
 
@@ -154,7 +154,7 @@ class DashboardPreController extends Controller
     {
         $tatib = TatibPreklinik::first(); // assuming you have a banner with id 1
 
-        session()->put('header', 'Tata tertib lab');
+        session()->put('header', 'Tata Tertib lab');
         return view('preclinic.tatib', compact('tatib'));
     }
 
@@ -187,7 +187,7 @@ class DashboardPreController extends Controller
     {
         $sop = SopPreklinik::first(); // assuming you have a banner with id 1
 
-        session()->put('header', 'SOP dan Instruksi Kerja');
+        session()->put('header', 'SOP dan Instruksi kerja');
         return view('preclinic.sop', compact('sop'));
     }
 

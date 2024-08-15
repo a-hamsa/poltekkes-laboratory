@@ -36,7 +36,7 @@ class InventoryPreclinisController extends Controller
         $request->validate([
             'name' => 'required',
             'amount' => 'required|integer',
-            'condition' => 'required|in:good,broken',
+            'condition' => 'required|in:Berfungsi,Rusak',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

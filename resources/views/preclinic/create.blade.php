@@ -7,28 +7,28 @@
             @csrf
 
             <div class="form-group">
-                <label for="name" class="block text-lg font-semibold mb-2">Name:</label>
+                <label for="name" class="block text-lg font-semibold mb-2">Nama:</label>
                 <input type="text" id="name" name="name" required
                     class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div class="form-group">
-                <label for="amount" class="block text-lg font-semibold mb-2">Amount:</label>
+                <label for="amount" class="block text-lg font-semibold mb-2">Jumlah:</label>
                 <input type="number" id="amount" name="amount" required
                     class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div class="form-group">
-                <label for="condition" class="block text-lg font-semibold mb-2">Condition:</label>
+                <label for="condition" class="block text-lg font-semibold mb-2">Kondisi:</label>
                 <select id="condition" name="condition" required
                     class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="good">Good</option>
-                    <option value="broken">Broken</option>
+                    <option value="Berfungsi">Berfungsi</option>
+                    <option value="Rusak">Rusak</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="image" class="block text-lg font-semibold mb-2">Image:</label>
+                <label for="image" class="block text-lg font-semibold mb-2">Ganbar:</label>
                 <input type="file" id="image" name="image" required
                     class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
@@ -36,7 +36,7 @@
 
                 <button type="submit"
                     class="btn bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded transition duration-300 ease-in-out">
-                    Create
+                    Tambah
                 </button>
             </div>
         </form>
