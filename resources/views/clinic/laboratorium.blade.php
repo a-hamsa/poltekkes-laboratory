@@ -138,11 +138,11 @@
                         <i class="fas fa-flask mb-2"></i>
                         Daftar Dosen
                     </button>
-                    <button id="open-popup" data-pdf="{{ $sop }}"
+                    <a href="{{ route('klinik.sop') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-file-alt mb-2"></i>
                         SOP dan Instruksi Kerja
-                    </button>
+                    </a>
                     <button id="open-popup" data-pdf="{{ $schedule }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>

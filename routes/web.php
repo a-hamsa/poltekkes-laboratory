@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\DashboardPreController;
 use App\Http\Controllers\Admin\StokPreclinicController;
 use App\Http\Controllers\Admin\InventoryClinicsController;
 use App\Http\Controllers\Admin\InventoryPreclinisController;
+use App\Http\Controllers\Admin\SopController;
+use App\Models\SopClinic;
 
 Route::get('/', function () {
     return view('home');
@@ -23,6 +25,7 @@ Route::get('klinik/inventory', [KlinikController::class, 'inventory'])->name('kl
 Route::get('preklinik/inventory', [PreklinikController::class, 'inventory'])->name('preklinik.inventory');
 Route::get('klinik/stock', [KlinikController::class, 'stock'])->name('klinik.stock');
 Route::get('preklinik/stock', [PreklinikController::class, 'stock'])->name('preklinik.stock');
+Route::get('klinik/sop', [KlinikController::class, 'sop'])->name('klinik.sop');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -38,7 +41,7 @@ Route::get('/dashboard/description', [DashboardController::class, 'desc'])->name
 Route::get('/dashboard/schedule', [DashboardController::class, 'schedule'])->name('dashboardschedule')->middleware('auth');
 Route::get('/dashboard/dosen', [DashboardController::class, 'dosen'])->name('dashboarddosen')->middleware('auth');
 Route::get('/dashboard/tatib', [DashboardController::class, 'tatib'])->name('dashboardtatib')->middleware('auth');
-Route::get('/dashboard/sop', [DashboardController::class, 'sop'])->name('dashboardsop')->middleware('auth');
+// Route::get('/dashboard/sop', [DashboardController::class, 'sop'])->name('dashboardsop')->middleware('auth');
 Route::get('/dashboard/absen', [DashboardController::class, 'absen'])->name('dashboardabsen')->middleware('auth');
 
 //post
@@ -49,6 +52,14 @@ Route::post('/dosen', [DashboardController::class, 'updateDosen'])->name('dashbo
 Route::post('/tatib', [DashboardController::class, 'updateTatib'])->name('dashboard.tatib')->middleware('auth');
 Route::post('/sop', [DashboardController::class, 'updateSop'])->name('dashboard.sop')->middleware('auth');
 Route::post('/absen', [DashboardController::class, 'updateAbsen'])->name('dashboard.absen')->middleware('auth');
+
+//SOP & IK
+Route::get('/dashboard/sop', [SopController::class, 'index'])->name('sop.index')->middleware('auth');
+Route::get('/dashboard/sop/create', [SopController::class, 'create'])->name('sop.create')->middleware('auth');
+Route::post('/dashboard/sop', [SopController::class, 'store'])->name('sop.store')->middleware('auth');
+Route::get('/dashboard/sop/{id}/edit', [SopController::class, 'edit'])->name('sop.edit')->middleware('auth');
+Route::put('/dashboard/sop/{id}', [SopController::class, 'update'])->name('sop.update')->middleware('auth');
+Route::delete('/dashboard/sop/{id}', [SopController::class, 'destroy'])->name('sop.destroy')->middleware('auth');
 
 // Inventory routes
 Route::get('/dashboard/inventory', [InventoryClinicsController::class, 'index'])->name('inventory.index');

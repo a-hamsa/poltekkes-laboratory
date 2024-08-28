@@ -78,7 +78,7 @@
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Tata tertib lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Tatib
                         </a>
-                        <a href="{{ route('dashboardsop') }}"
+                        <a href="{{ route('sop.index') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
                         <a href="{{ route('dashboardabsen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>

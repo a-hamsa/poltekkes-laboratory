@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SopClinic extends Model
 {
     protected $fillable = [
+        'name',
         'pdf_file',
     ];
 }

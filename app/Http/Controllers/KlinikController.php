@@ -72,4 +72,12 @@ class KlinikController extends Controller
 
         return view('clinic.stokbahan', compact('stocks'));
     }
+
+    public function sop()
+    {
+        $sop = SopClinic::all();
+
+        return view('clinic.sop', compact('sop'));
+    }
+
 }

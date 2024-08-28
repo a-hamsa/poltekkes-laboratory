@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sop_clinics', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('pdf_file')->nullable();
             $table->timestamps();
         });
