@@ -1,19 +1,21 @@
 <?php
 
+use App\Models\SopClinic;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KlinikController;
+use App\Http\Controllers\Admin\SopController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\PreklinikController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Admin\StudentListClinic;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StokClinicController;
 use App\Http\Controllers\Admin\DashboardPreController;
+use App\Http\Controllers\Admin\AbsensiClinicController;
 use App\Http\Controllers\Admin\StokPreclinicController;
 use App\Http\Controllers\Admin\InventoryClinicsController;
 use App\Http\Controllers\Admin\InventoryPreclinisController;
-use App\Http\Controllers\Admin\SopController;
-use App\Models\SopClinic;
 
 Route::get('/', function () {
     return view('home');
@@ -79,6 +81,24 @@ Route::get('/dashboard/stok/{id}/edit', [StokClinicController::class, 'edit'])->
 Route::put('/dashboard/stok/{id}', [StokClinicController::class, 'update'])->name('stok.update');
 Route::delete('/dashboard/stok/{id}', [StokClinicController::class, 'destroy'])->name('stok.destroy');
 
+
+//STUDENT
+Route::get('/dashboard/student', [StudentListClinic::class, 'index'])->name('student.index');
+Route::get('/dashboard/student/create', [StudentListClinic::class, 'create'])->name('student.create');
+Route::post('/dashboard/student', [StudentListClinic::class, 'store'])->name('student.store');
+Route::get('/dashboard/student/{id}', [StudentListClinic::class, 'show'])->name('student.show');
+Route::get('/dashboard/student/{id}/edit', [StudentListClinic::class, 'edit'])->name('student.edit');
+Route::put('/dashboard/student/{id}', [StudentListClinic::class, 'update'])->name('student.update');
+Route::delete('/dashboard/student/{id}', [StudentListClinic::class, 'destroy'])->name('student.destroy');
+
+//ABSENTS
+Route::get('/dashboard/absensi', [AbsensiClinicController::class, 'index'])->name('absensi.index');
+Route::post('/dashboard/semester', [AbsensiClinicController::class, 'storeSemester'])->name('semester.store');
+Route::delete('/dashboard/semester/{id}', [AbsensiClinicController::class, 'destroySemester'])->name('semester.destroy');
+Route::get('/absensi', [AbsensiClinicController::class, 'createAbsentStatus'])->name('absensi.create');
+Route::post('/absensi', [AbsensiClinicController::class, 'storeAbsentStatus'])->name('absensi.store');
+Route::get('/dashboard/student/{id}/edit', [StudentListClinic::class, 'edit'])->name('student.edit');
+Route::put('/dashboard/student/{id}', [StudentListClinic::class, 'update'])->name('student.update');
 
 //PRE-KLINIK
 //get
