@@ -286,7 +286,7 @@
         });
 
         function closePopup(event) {
-            if (event) {
+            if (event) {    
                 event.stopPropagation(); // Prevent event bubbling if this function is called by clicking on the content
             }
             const successPopup = document.getElementById('success-popup');
