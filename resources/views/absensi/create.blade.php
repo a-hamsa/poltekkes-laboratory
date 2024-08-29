@@ -40,7 +40,7 @@
                         >
                             <option value="">Select Semester</option>
                             @foreach($semesters as $semester)
-                                <option value="{{ $semester->id }}" data-semester="{{ $semester->name }}">
+                                <option value="{{ $semester->semester }}" data-semester="{{ $semester->semester }}">
                                     {{ $semester->semester }}
                                 </option>
                             @endforeach
@@ -59,7 +59,7 @@
                         >
                             <option value="">Select Name</option>
                             @foreach($students as $student)
-                                <option value="{{ $student->id }}" data-nim="{{ $student->nim }}" data-class="{{ $student->class }}" data-semester="{{ $student->semester }}" data-absent_status="{{ $student->absent_status }}">
+                                <option value="{{ $student->name }}" data-nim="{{ $student->nim }}" data-class="{{ $student->class }}" data-semester="{{ $student->semester }}" data-absent_status="{{ $student->absent_status }}">
                                     {{ $student->name }}
                                 </option>
                             @endforeach

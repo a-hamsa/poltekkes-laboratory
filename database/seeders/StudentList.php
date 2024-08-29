@@ -18,7 +18,7 @@ class StudentList extends Seeder
         $data = [];
         $class = ['1A', '2B', '3C', '4D'];
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $data[] = [
                 'name' => 'Student ' . $i,
                 'nim' => rand(2_000_000_000, 7_000_000_000),
