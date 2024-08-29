@@ -30,10 +30,23 @@
     </div>
     <div class="flex">
         <!-- Sidebar -->
-        <div class="hidden flex md:flex sidebar w-64 text-gray-200 min-h-screen">
+        <div class="hidden md:flex flex-none sidebar w-60 text-gray-200 min-h-screen">
             <nav class="flex flex-col flex-grow mt-10">
                 <a href="{{ route('dashboard') }}"
-                    class="block py-2.5 px-4 rounded font-bold transition duration-200 hover:bg-primary-dark hover:text-white">Home</a>
+                    class="block py-2.5 px-4 rounded font-bold transition duration-200 {{ session('header') == 'Dashboard' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Home</a>
+                <a href="{{ route('student.index') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Siswa' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Daftar
+                    Mahasiswa</a>
+                <a href="{{ route('absensi.index') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Rekap Absensi' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Rekap
+                    Absensi</a>
+                <a href="{{ route('sop.index') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'SOP dan Instruksi Kerja' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">SOP
+                    & IK</a>
+                <a href="{{ route('schedules.index') }}"
+                    class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Jadwal Penggunaan Lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
+                    Jadwal
+                </a>
                 <div x-data="{
                     open: JSON.parse(localStorage.getItem('open_klinik')) || false,
                     toggleOpen() {
@@ -61,14 +74,10 @@
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Deskripsi Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Deskripsi
                         </a>
-                        <a href="{{ route('dashboardschedule') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Jadwal Pemakaian Lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
-                            Jadwal
-                        </a>
                         <a href="{{ route('inventory.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Inventaris' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Inventaris</a>
                         <a href="{{ route('stok.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Stok Bahan Habis Pakai' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Stok
                             Bahan</a>
                         <a href="{{ route('dashboarddosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
@@ -78,10 +87,6 @@
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Tata tertib lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Tatib
                         </a>
-                        <a href="{{ route('sop.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
-                        <a href="{{ route('dashboardabsen') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
                 <div x-data="{
@@ -110,14 +115,10 @@
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Deskripsi Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Deskripsi
                         </a>
-                        <a href="{{ route('preschedule') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Jadwal Pemakaian Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
-                            Jadwal
-                        </a>
                         <a href="{{ route('preinventory.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Inventaris</a>
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Inventaris Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Inventaris</a>
                         <a href="{{ route('prestok.index') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Stok
+                            class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Stok Bahan Habis Pakai' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">Stok
                             Bahan</a>
                         <a href="{{ route('predosen') }}"
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Daftar Nama Dosen Pre-Klinik' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
@@ -127,10 +128,6 @@
                             class="block py-2.5 px-4 rounded transition duration-200 {{ session('header') == 'Tata Tertib lab' ? 'bg-primary-dark text-white' : 'hover:bg-primary-dark hover:text-white' }}">
                             Tatib
                         </a>
-                        <a href="{{ route('presop') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">SOP</a>
-                        <a href="{{ route('preabsen') }}"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-primary-dark hover:text-white">Absensi</a>
                     </div>
                 </div>
             </nav>
@@ -203,7 +200,8 @@
         </div>
     </div>
     <!-- Mobile Navigation Bar -->
-    <div class="md:hidden mobile-navbar fixed inset-x-0 bottom-0 bg-gray-800 text-gray-200 flex justify-around py-3 shadow-lg z-50">
+    <div
+        class="md:hidden mobile-navbar fixed inset-x-0 bottom-0 bg-gray-800 text-gray-200 flex justify-around py-3 shadow-lg z-50">
         <a href="{{ route('dashboard') }}"
             class="flex flex-col items-center transition duration-200 hover:bg-gray-700 hover:text-white py-2 px-3 rounded">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -231,7 +229,7 @@
                     class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Banner</a>
                 <a href="{{ route('dashboarddesc') }}"
                     class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Deskripsi</a>
-                <a href="{{ route('dashboardschedule') }}"
+                <a href="{{ route('schedules.index') }}"
                     class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Jadwal</a>
                 <a href="{{ route('inventory.index') }}"
                     class="block py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">Inventaris</a>
@@ -268,23 +266,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.mobile-navbar');
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.mobile-navbar');
 
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            if (scrollTop > lastScrollTop) {
-                // Downscroll - hide navbar
-                navbar.classList.add('translate-y-full');
-            } else {
-                // Upscroll - show navbar
-                navbar.classList.remove('translate-y-full');
-            }
+                if (scrollTop > lastScrollTop) {
+                    // Downscroll - hide navbar
+                    navbar.classList.add('translate-y-full');
+                } else {
+                    // Upscroll - show navbar
+                    navbar.classList.remove('translate-y-full');
+                }
 
-            lastScrollTop = scrollTop;
+                lastScrollTop = scrollTop;
+            });
         });
-    });
         document.addEventListener('DOMContentLoaded', function() {
             const successMessage = '{{ session('success') }}';
             const errorMessage = '{{ session('error') }}';

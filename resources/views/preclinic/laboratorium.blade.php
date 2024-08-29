@@ -138,16 +138,16 @@
                         <i class="fas fa-flask mb-2"></i>
                         Daftar Dosen
                     </button>
-                    <button id="open-popup" data-pdf="{{ $sop }}"
+                    <a href="{{ route('sop') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-file-alt mb-2"></i>
                         SOP dan Instruksi Kerja
-                    </button>
-                    <button id="open-popup" data-pdf="{{ $schedule }}"
+                    </a>
+                    <a href="{{ route('jadwal') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>
                         Jadwal Pemakaian Lab
-                    </button>
+                    </a>
                     <button id="open-popup" data-pdf="{{ $tatib }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-gavel mb-2"></i>
@@ -158,7 +158,7 @@
                         <i class="fas fa-clipboard-list mb-2"></i>
                         Inventarisasi Alat
                     </a>
-                    <a href=" {{ $absen }}"
+                    <a href=" {{ route('absensi.create') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-user-check mb-2"></i>
                         Absensi Mahasiswa

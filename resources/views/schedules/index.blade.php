@@ -16,43 +16,43 @@
 </head>
 
 <body>
-    {{-- navbar --}}
+    {{-- Navbar --}}
     <div class="flex m-4 w-24 lg:w-32">
         <a id="goBackLink" href="#">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
         </a>
     </div>
 
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-6">Jadwal Penggunaan Lab</h1>
 
-    <div class="container mx-auto px-6 pb-4">
-        <h2 class="text-2xl font-bold mb-4">SOP & Instruksi Kerja</h2>
-        <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
-            <thead class="bg-primary text-white uppercase text-sm leading-normal">
-                <tr>
-                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Nama</th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">File</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($sop as $sops)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
-                            {{ $loop->iteration }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
-                            {{ $sops->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                            <button
-                                class="open-modal py-2 px-4 rounded text-sm font-medium text-white bg-primary hover:bg-primary-dark transition duration-300 ease-in-out"
-                                data-id="{{ $sops->id }}" data-name="{{ $sops->name }}"
-                                data-file="{{ asset('storage/' . $sops->pdf_file) }}">
-                                <i class="fas fa-file-pdf text-lg"></i>
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @foreach ($schedulesBySemester as $semesterId => $schedules)
+            @php
+                $semester = $semesters->firstWhere('id', $semesterId);
+            @endphp
+
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-4">{{ $semester ? $semester->semester : 'Unknown Semester' }}</h2>
+                <div class="space-y-4">
+                    @foreach ($schedules as $schedule)
+                        <div class="card bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold">{{ $schedule->title }}</h3>
+                                @if ($schedule->pdf_file)
+                                    <a href="#" class="text-blue-500 hover:underline open-modal"
+                                        data-name="{{ $schedule->title }}"
+                                        data-file="{{ asset('storage/uploads/' . $schedule->pdf_file) }}">
+                                        View
+                                    </a>
+                                @else
+                                    <p class="text-gray-600">No PDF available</p>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
     </div>
 
     <!-- Modal Structure -->
@@ -116,14 +116,12 @@
             });
         });
     </script>
-
     <script>
-        document.getElementById('goBackLink').addEventListener('click', function(event) {
+        document.getElementById('goBackLink').addEventListener('click', function (event) {
             event.preventDefault();
             window.history.back();
         });
     </script>
-
 </body>
 
 </html>

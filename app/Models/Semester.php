@@ -12,4 +12,8 @@ class Semester extends Model
     protected $fillable = [
         'semester'
     ];
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

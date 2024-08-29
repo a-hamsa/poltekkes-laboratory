@@ -20,10 +20,16 @@
     </style>
 </head>
 <body class="bg-gray-100">
+    {{-- navbar --}}
+    <div class="flex m-4 w-24 lg:w-32">
+        <a id="goBackLink" href="#">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="max-w-full h-auto">
+        </a>
+    </div>
     <div class="container mx-auto px-6 py-8">
         <!-- Content Wrapper -->
         <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4">Tambah Absen</h3>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-4">Pengisian Absensi</h3>
             <form method="POST" action="{{ route('absensi.store') }}" class="space-y-6">
                 @csrf
 
@@ -107,9 +113,8 @@
                             required
                         >
                             <option value="">Select Status</option>
-                            <option value="Present">Present</option>
-                            <option value="Absent">Absent</option>
-                            <option value="Excused">Excused</option>
+                            <option value="Hadir">Hadir</option>
+                            <option value="Tidak Hadir">Tidak Hadir</option>
                         </select>
                         @error('absent_status')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -140,6 +145,12 @@
                 console.log('Semester selected:', selectedOption.getAttribute('data-semester'));
             }
         }
+    </script>
+    <script>
+        document.getElementById('goBackLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.history.back();
+        });
     </script>
 </body>
 </html>

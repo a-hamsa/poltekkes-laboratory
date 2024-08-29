@@ -71,9 +71,9 @@
                             @foreach($uniqueDates as $date)
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                     @if($dates->contains($date))
-                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">Present</span>
+                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">Hadir</span>
                                     @else
-                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">Absent</span>
+                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">Tidak Hadir</span>
                                     @endif
                                 </td>
                             @endforeach

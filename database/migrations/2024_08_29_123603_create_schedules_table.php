@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('pdf_file')->nullable();
+            $table->string('title');
+            $table->foreignId('semester_id')->constrained('semesters')->onDelete('cascade'); // foreign key constraint
+            $table->string('pdf_file'); // to store the filename of the uploaded PDF
             $table->timestamps();
         });
     }

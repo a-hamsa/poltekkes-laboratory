@@ -138,16 +138,17 @@
                         <i class="fas fa-flask mb-2"></i>
                         Daftar Dosen
                     </button>
-                    <a href="{{ route('klinik.sop') }}"
+                    <a href="{{ route('sop') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-file-alt mb-2"></i>
                         SOP dan Instruksi Kerja
                     </a>
-                    <button id="open-popup" data-pdf="{{ $schedule }}"
+                    <a href="{{ route('jadwal') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>
                         Jadwal Pemakaian Lab
-                    </button>
+                    </a>
+
                     <button id="open-popup" data-pdf="{{ $tatib }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-gavel mb-2"></i>
@@ -158,7 +159,7 @@
                         <i class="fas fa-clipboard-list mb-2"></i>
                         Inventarisasi Alat
                     </a>
-                    <a href=" {{ $absen }}"
+                    <a href=" {{ route('absensi.create') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-user-check mb-2"></i>
                         Absensi Mahasiswa
@@ -286,7 +287,7 @@
         });
 
         function closePopup(event) {
-            if (event) {    
+            if (event) {
                 event.stopPropagation(); // Prevent event bubbling if this function is called by clicking on the content
             }
             const successPopup = document.getElementById('success-popup');
@@ -351,7 +352,7 @@
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // Check position on page load
 
-            
+
         });
     </script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

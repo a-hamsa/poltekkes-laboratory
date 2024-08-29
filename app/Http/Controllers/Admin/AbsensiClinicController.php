@@ -32,6 +32,8 @@ class AbsensiClinicController extends Controller
 
         $semesters = Semester::all();
 
+        session()->put('header', 'Rekap Absensi');
+
         return view('absensi.index', compact('absensi', 'uniqueDates', 'semesters'));
     }
 

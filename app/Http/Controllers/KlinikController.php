@@ -12,6 +12,7 @@ use App\Models\Description;
 use App\Models\ClinicDosens;
 use Illuminate\Http\Request;
 use App\Models\InventoryClinics;
+use App\Models\Semester;
 
 class KlinikController extends Controller
 {
@@ -80,4 +81,15 @@ class KlinikController extends Controller
         return view('clinic.sop', compact('sop'));
     }
 
+    public function jadwal()
+    {
+        // Retrieve all schedules grouped by semester
+        $schedulesBySemester = Schedule::with('semester')->get()->groupBy('semester_id');
+
+        // Pass the data to the view
+        return view('schedules.index', [
+            'schedulesBySemester' => $schedulesBySemester,
+            'semesters' => Semester::all()
+        ]);
+    }
 }
