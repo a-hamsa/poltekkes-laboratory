@@ -236,7 +236,74 @@
         </div>
     </div>
 
+    <!-- Popup container for success -->
+    <div id="success-popup"
+        class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-50 transition-opacity duration-300 ease-out"
+        onclick="closePopup(event)">
+        <div id="popup-content"
+            class="bg-white border border-green-300 text-green-800 px-6 py-4 rounded-lg shadow-lg transform transition-transform transition-opacity duration-300 ease-out scale-50 opacity-0"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <strong class="font-bold">Success!</strong>
+            </div>
+            <span class="block mt-2">{{ session('success') }}</span>
+            <button onclick="closePopup(event)" class="absolute top-2 right-2 text-green-800 hover:text-green-600">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const successMessage = '{{ session('success') }}';
+            const errorMessage = '{{ session('error') }}';
+
+            if (successMessage) {
+                const popup = document.getElementById('success-popup');
+                const popupContent = document.getElementById('popup-content');
+                popup.classList.remove('hidden');
+                setTimeout(() => {
+                    popupContent.classList.remove('scale-50', 'opacity-0');
+                    popupContent.classList.add('scale-100', 'opacity-100');
+                }, 10); // Slight delay to trigger the transition
+            } else if (errorMessage) {
+                const popup = document.getElementById('error-popup');
+                const popupContent = document.getElementById('error-content');
+                popup.classList.remove('hidden');
+                setTimeout(() => {
+                    popupContent.classList.remove('scale-50', 'opacity-0');
+                    popupContent.classList.add('scale-100', 'opacity-100');
+                }, 10); // Slight delay to trigger the transition
+            }
+        });
+
+        function closePopup(event) {
+            if (event) {
+                event.stopPropagation(); // Prevent event bubbling if this function is called by clicking on the content
+            }
+            const successPopup = document.getElementById('success-popup');
+            const errorPopup = document.getElementById('error-popup');
+            const successContent = document.getElementById('popup-content');
+            const errorContent = document.getElementById('error-content');
+
+            if (successPopup && !successPopup.classList.contains('hidden')) {
+                successContent.classList.remove('scale-100', 'opacity-100');
+                successContent.classList.add('scale-50', 'opacity-0');
+                setTimeout(() => successPopup.classList.add('hidden'), 300); // Match the transition duration
+            } else if (errorPopup && !errorPopup.classList.contains('hidden')) {
+                errorContent.classList.remove('scale-100', 'opacity-100');
+                errorContent.classList.add('scale-50', 'opacity-0');
+                setTimeout(() => errorPopup.classList.add('hidden'), 300); // Match the transition duration
+            }
+        }
         document.addEventListener('DOMContentLoaded', () => {
             const openPopupButtons = document.querySelectorAll('#open-popup');
             const closePopup = document.getElementById('close-popup');
@@ -283,6 +350,8 @@
 
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // Check position on page load
+
+            
         });
     </script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
