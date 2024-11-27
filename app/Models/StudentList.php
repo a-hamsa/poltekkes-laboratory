@@ -15,5 +15,6 @@ class StudentList extends Model
         'name',
         'nim',
         'class',
+        'tk_smt',
     ];
 }

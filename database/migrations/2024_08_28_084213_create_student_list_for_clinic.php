@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('nim');
             $table->string('class');
+            $table->string('tk_smt');
             $table->timestamps();
         });
     }

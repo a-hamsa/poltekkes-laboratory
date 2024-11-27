@@ -3,85 +3,112 @@
 @section('content')
     <div class="container mx-auto px-6">
 
-        <!-- New Input Form -->
-        <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4">Tambah Semester</h3>
-            <form method="POST" action="{{ route( 'semester.store' ) }}" class="space-y-6">
-                @csrf
+        <div class="flex justify-between items-center space-x-6 space-y-4 w-full">
+            <div class="flex space-x-6 items-center">
+                <!-- Filter Form -->
+                <form method="GET" action="{{ route('absensi.index') }}" class="flex items-center space-x-6">
+                    <!-- Class Filter -->
+                    <div class="flex flex-col space-y-2">
+                        <label for="class" class="text-sm font-medium text-gray-700">Class</label>
+                        <select name="class" id="class"
+                            class="form-select px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            @foreach ($classes as $class)
+                                <option value="{{ $class }}" {{ request('class') == $class ? 'selected' : '' }}>
+                                    {{ $class }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <div class="flex items-center space-x-4 mb-6">
-                    <input
-                        name="semester"
-                        type="text"
-                        class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Enter new value"
-                        required
-                    />
-                    <button
-                        type="submit"
-                        class="btn bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded transition duration-300 ease-in-out"
-                    >
-                        Add
-                    </button>
-                </div>
-            </form>
+                    <!-- TK./SMT Filter -->
+                    <div class="flex flex-col space-y-2">
+                        <label for="tk_smt" class="text-sm font-medium text-gray-700">TK./SMT</label>
+                        <select name="tk_smt" id="tk_smt"
+                            class="form-select px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            @foreach ($tk_smt_list as $tk_smt)
+                                <option value="{{ $tk_smt }}" {{ request('tk_smt') == $tk_smt ? 'selected' : '' }}>
+                                    {{ $tk_smt }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <!-- Display Submitted Inputs -->
-            <div class="mt-6">
-                <h4 class="text-xl font-semibold text-gray-600 mb-2">Daftar Semester:</h4>
-                <ul class="list-disc pl-5">
-                    @forelse($semesters as $semester)
-                        <li class="flex justify-between items-center text-gray-800 mb-2">
-                            {{ $semester->semester }}
-                            <form action="{{ route( 'semester.destroy', $semester->id ) }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-800">
-                                    Delete
-                                </button>
-                            </form>
-                        </li>
-                    @empty
-                        <li class="text-gray-600">No inputs submitted yet.</li>
-                    @endforelse
-                </ul>
+                    <!-- Filter Button -->
+                    <div>
+                        <button type="submit"
+                            class="btn bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded transition duration-300 ease-in-out">
+                            Filter
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+        <!-- Student Table -->
+        <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
+            <thead class="bg-primary text-white uppercase text-sm leading-normal">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">No</th>
+                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">NIM</th>
+                    <!-- Add columns for Pertemuan 1 to Pertemuan 8 -->
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 1
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 2
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 3
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 4
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 5
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 6
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 7
+                    </th>
+                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 8
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach ($students as $student)
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
+                            {{ $loop->iteration }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
+                            {{ $student->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $student->nim }}
+                        </td>
+                        <!-- Add data for Pertemuan 1 to Pertemuan 8 -->
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            <!-- Example data for Pertemuan 1, adjust according to your actual data -->
+                            {{ $student->pertemuan_1 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_2 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_3 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_4 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_5 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_6 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_7 ?? 'N/A' }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
+                            {{ $student->pertemuan_8 ?? 'N/A' }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-        @foreach($absensi as $semester => $students)
-            <h3 class="text-xl font-semibold text-gray-600 my-4">{{ $semester }}</h3>
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden mb-6">
-                    <thead class="bg-primary text-white uppercase text-sm leading-normal">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">No</th>
-                            <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Name</th>
-                            @foreach($uniqueDates as $date)
-                                <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">
-                                    {{ \Carbon\Carbon::parse($date)->format('d M Y') }}
-                                </th>
-                            @endforeach
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($students as $name => $dates)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">{{ $name }}</td>
-                            @foreach($uniqueDates as $date)
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                    @if($dates->contains($date))
-                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">Hadir</span>
-                                    @else
-                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">Tidak Hadir</span>
-                                    @endif
-                                </td>
-                            @endforeach
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endforeach
+
     </div>
 @endsection

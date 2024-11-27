@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('nim');
             $table->string('class');
-            $table->string('semester');
+            $table->string('meet');
             $table->string('absent_status');
             $table->timestamps();
         });

@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'Admin@email.com',
             'password' => 'Admin1234#',
         ]);
+
+        // $this->call(AbsensiSeeder::class);
+        // $this->call(AlatSeeder::class);
+        // $this->call(StockSeeder::class);
+        // $this->call(StudentList::class);
     }
 }

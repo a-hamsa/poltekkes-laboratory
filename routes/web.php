@@ -91,6 +91,7 @@ Route::get('/dashboard/student/{id}', [StudentListClinic::class, 'show'])->name(
 Route::get('/dashboard/student/{id}/edit', [StudentListClinic::class, 'edit'])->name('student.edit')->middleware('auth');
 Route::put('/dashboard/student/{id}', [StudentListClinic::class, 'update'])->name('student.update')->middleware('auth');
 Route::delete('/dashboard/student/{id}', [StudentListClinic::class, 'destroy'])->name('student.destroy')->middleware('auth');
+Route::post('/dashboard/student/import', [StudentListClinic::class, 'import'])->name('student.import')->middleware('auth');
 
 //ABSENTS
 Route::get('/dashboard/absensi', [AbsensiClinicController::class, 'index'])->name('absensi.index')->middleware('auth');

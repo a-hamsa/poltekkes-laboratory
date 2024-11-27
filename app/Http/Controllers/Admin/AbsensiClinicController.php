@@ -11,30 +11,37 @@ use App\Http\Controllers\Controller;
 class AbsensiClinicController extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
+        // Initialize the query for StudentList
+        $query = StudentList::query();
 
-        $absensi = AbsensiClinic::select('name', 'semester', 'created_at')
-        ->get()
-        ->groupBy('semester')
-        ->map(function ($semesterGroup) {
-            return $semesterGroup->groupBy('name')->map(function ($userDates) {
-                return $userDates->pluck('created_at')->map(function ($date) {
-                    return $date->format('Y-m-d');
-                });
-            });
-        });
+        // Check if the user has selected a class and tk_smt filter
+        if ($request->has('class') && $request->class) {
+            $query->where('class', $request->class);
+        } else {
+            // If no class filter, default to 'A' class
+            $query->where('class', 'A');
+        }
 
-        $uniqueDates = AbsensiClinic::selectRaw('DATE(created_at) as date')
-        ->distinct()
-        ->orderBy('date', 'asc') // Optional: to order the dates
-        ->get()
-        ->pluck('date'); // Extract the date column
+        if ($request->has('tk_smt') && $request->tk_smt) {
+            $query->where('tk_smt', $request->tk_smt);
+        } else {
+            // If no tk_smt filter, default to '1 1'
+            $query->where('tk_smt', '1 (satu) / 1 (satu)');
+        }
 
-        $semesters = Semester::all();
+        // Paginate the results
+        $students = $query->paginate(50);
 
+        // Pass filters for the form
+        $classes = StudentList::select('class')->distinct()->pluck('class');
+        $tk_smt_list = StudentList::select('tk_smt')->distinct()->pluck('tk_smt');
+
+        // Set session header
         session()->put('header', 'Rekap Absensi');
 
-        return view('absensi.index', compact('absensi', 'uniqueDates', 'semesters'));
+        // Return the view with the necessary data
+        return view('absensi.index', compact('students', 'classes', 'tk_smt_list'));
     }
 
     public function storeSemester(Request $request){

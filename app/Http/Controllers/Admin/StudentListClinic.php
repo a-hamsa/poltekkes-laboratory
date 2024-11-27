@@ -2,18 +2,37 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\StudentList;
 use Illuminate\Http\Request;
+use App\Imports\StudentsImport;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentListClinic extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $students = StudentList::all();
+        $query = StudentList::query();
+
+        // Apply filters
+        if ($request->has('class') && $request->class) {
+            $query->where('class', $request->class);
+        }
+        if ($request->has('tk_smt') && $request->tk_smt) {
+            $query->where('tk_smt', $request->tk_smt);
+        }
+    
+        // Paginate the results
+        $students = $query->paginate(50);
+    
+        // Pass filters for the form
+        $classes = StudentList::select('class')->distinct()->pluck('class');
+        $tk_smt_list = StudentList::select('tk_smt')->distinct()->pluck('tk_smt');
         session()->put('header', 'Daftar Nama Siswa');
-        return view('clinic.student', compact('students'));
+    
+        return view('clinic.student', compact('students', 'classes', 'tk_smt_list'));
+
     }
 
     /**
@@ -34,6 +53,7 @@ class StudentListClinic extends Controller
             'name' => 'required',
             'nim' => 'required',
             'class' => 'required',
+            'tk_smt' => 'required',
         ]);
 
         $students = new StudentList();
@@ -74,12 +94,14 @@ class StudentListClinic extends Controller
             'name' => 'required',
             'nim' => 'required',
             'class' => 'required',
+            'tk_smt' => 'required',
         ]);
 
         $students = StudentList::find($id);
         $students->name = $request->input('name');
         $students->nim = $request->input('nim');
         $students->class = $request->input('class');
+        $students->tk_smt = $request->input('tk_smt');
 
         $students->save();
 
@@ -95,5 +117,16 @@ class StudentListClinic extends Controller
         $students->delete();
 
         return redirect()->route('student.index')->with('success', 'Student updated successfully!');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        Excel::import(new StudentsImport, $request->file('file'));
+
+        return back()->with('success', 'Students imported successfully!');
     }
 }
