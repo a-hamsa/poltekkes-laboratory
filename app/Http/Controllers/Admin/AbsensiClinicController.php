@@ -83,7 +83,7 @@ class AbsensiClinicController extends Controller
         // dd($attendanceData);
 
         // Store header in session
-        session()->put('header', 'Daftar Nama Siswa');
+        session()->put('header', 'Rekap Absensi');
 
         // Return the view with necessary data
         return view('absensi.index', compact('students', 'classes', 'tk_smt_list', 'attendanceData'));

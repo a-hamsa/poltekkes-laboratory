@@ -4,10 +4,10 @@
     <div class="container mx-auto px-6 pb-4">
         <div class="flex justify-between items-center space-x-6 space-y-4 w-full">
             <!-- Left: Add New Data Button -->
-            <a href="{{ route('student.create') }}"
+            {{-- <a href="{{ route('student.create') }}"
                 class="btn bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded transition duration-300 ease-in-out">
                 Tambah Data Baru
-            </a>
+            </a> --}}
 
             <!-- Right: Filter Form and Import File Form -->
             <div class="flex space-x-6 items-center">

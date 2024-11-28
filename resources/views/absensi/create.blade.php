@@ -112,7 +112,7 @@
                         <select name="absent_status" id="absent_status"
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required>
-                            <option value="Hadir">Hadir</option>
+                            <option value="Menunggu Konfirmasi">Hadir</option>
                             <option value="Tidak Hadir">Tidak Hadir</option>
                         </select>
                         @error('absent_status')
