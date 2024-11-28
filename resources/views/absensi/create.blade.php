@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     {{-- navbar --}}
     <div class="flex m-4 w-24 lg:w-32">
@@ -34,85 +36,82 @@
                 @csrf
 
                 <div class="space-y-4">
-                    <!-- Semester Dropdown -->
+
+                    {{-- <!-- NIM Dropdown -->
                     <div>
-                        <label for="semester" class="block text-sm font-medium text-gray-700">Semester</label>
-                        <select
-                            name="semester"
-                            id="semester"
+                        <label for="nim" class="block text-sm font-medium text-gray-700">Name</label>
+                        <select name="nim" id="nim"
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onchange="populateFields(this)"
-                            required
-                        >
-                            <option value="">Select Semester</option>
-                            @foreach($semesters as $semester)
-                                <option value="{{ $semester->semester }}" data-semester="{{ $semester->semester }}">
-                                    {{ $semester->semester }}
+                            onchange="populateFields(this)" required>
+                            <option value="">Pilih NIM</option>
+                            @foreach ($students as $student)
+                                <option value="{{ $student->name }}" data-nim="{{ $student->nim }}"
+                                    data-class="{{ $student->class }}" data-semester="{{ $student->semester }}"
+                                    data-absent_status="{{ $student->absent_status }}">
+                                    {{ $student->nim }}
                                 </option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
-                    <!-- Name Dropdown -->
+                    <!-- Name Input -->
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <select
-                            name="name"
-                            id="name"
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                        <input name="name" type="text" id="name"
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onchange="populateFields(this)"
-                            required
-                        >
-                            <option value="">Select Name</option>
-                            @foreach($students as $student)
-                                <option value="{{ $student->name }}" data-nim="{{ $student->nim }}" data-class="{{ $student->class }}" data-semester="{{ $student->semester }}" data-absent_status="{{ $student->absent_status }}">
-                                    {{ $student->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                            placeholder="Masukan nama" value="{{ old('name') }}" required />
+                        @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
+                    <!-- NIM Input -->
                     <div>
                         <label for="nim" class="block text-sm font-medium text-gray-700">NIM</label>
-                        <input
-                            name="nim"
-                            type="text"
-                            id="nim"
+                        <input name="nim" type="text" id="nim"
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter NIM"
-                            value="{{ old('nim') }}"
-                            required
-                        />
+                            placeholder="Masukan NIM" value="{{ old('name') }}" required />
                         @error('nim')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
-                        <label for="class" class="block text-sm font-medium text-gray-700">Class</label>
-                        <input
-                            name="class"
-                            type="text"
-                            id="class"
+                        <label for="class" class="block text-sm font-medium text-gray-700">Kelas</label>
+                        <select name="class" id="class"
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Enter class"
-                            value="{{ old('class') }}"
-                            required
-                        />
-                        @error('class')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                            onchange="populateFields(this)" required>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                    </div>
+
+                    <div>
+                        <label for="meet" class="block text-sm font-medium text-gray-700">Pertemuan</label>
+                        <select name="meet" id="meet"
+                            class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onchange="populateFields(this)" required>
+                            @for ($i = 1; $i <= 8; $i++)
+                                <option value="pertemuan_{{$i}}">
+                                    Pertemuan {{$i}}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="room" class="block text-sm font-medium text-gray-700">Ruangan</label>
+                        <select name="room" id="room"
+                            class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            onchange="populateFields(this)" required>
+                            <option value="klinik">Klinik</option>
+                            <option value="preklinik">Preklinik</option>
                     </div>
 
                     <div>
                         <label for="absent_status" class="block text-sm font-medium text-gray-700">Absent Status</label>
-                        <select
-                            name="absent_status"
-                            id="absent_status"
+                        <select name="absent_status" id="absent_status"
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            required
-                        >
-                            <option value="">Select Status</option>
+                            required>
                             <option value="Hadir">Hadir</option>
                             <option value="Tidak Hadir">Tidak Hadir</option>
                         </select>
@@ -122,10 +121,8 @@
                     </div>
                 </div>
 
-                <button
-                    type="submit"
-                    class="btn bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded transition duration-300 ease-in-out"
-                >
+                <button type="submit"
+                    class="btn bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded transition duration-300 ease-in-out">
                     Save
                 </button>
             </form>
@@ -139,10 +136,6 @@
                 document.getElementById('nim').value = selectedOption.getAttribute('data-nim');
                 document.getElementById('class').value = selectedOption.getAttribute('data-class');
                 document.getElementById('absent_status').value = selectedOption.getAttribute('data-absent_status');
-            } else if (selectElement.id === 'semester') {
-                // Optional: Handle semester specific logic if needed
-                // For now, just set an example value
-                console.log('Semester selected:', selectedOption.getAttribute('data-semester'));
             }
         }
     </script>
@@ -153,4 +146,5 @@
         });
     </script>
 </body>
+
 </html>

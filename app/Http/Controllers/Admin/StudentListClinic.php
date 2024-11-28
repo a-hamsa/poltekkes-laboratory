@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\StudentList;
 use Illuminate\Http\Request;
 use App\Imports\StudentsImport;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -13,26 +14,44 @@ class StudentListClinic extends Controller
     //
     public function index(Request $request)
     {
-        $query = StudentList::query();
+        // Create an array of the tables you want to query
+        $tables = [
+            'student_list_for_d3_t1',
+            'student_list_for_d3_t2',
+            'student_list_for_d4_t1',
+            'student_list_for_d4_t2',
+            'student_list_for_d4_t3',
+        ];
 
-        // Apply filters
+        // Initialize the query builder for all tables
+        $query = DB::table($tables[$request->tk_smt ?? 0]);
+
+        // Loop through the tables and union the results
+        foreach (array_slice($tables, 1) as $table) {
+            $query->union(DB::table($table));
+        }
+
+        // Apply filters if they are set
         if ($request->has('class') && $request->class) {
             $query->where('class', $request->class);
         }
-        if ($request->has('tk_smt') && $request->tk_smt) {
-            $query->where('tk_smt', $request->tk_smt);
-        }
-    
-        // Paginate the results
-        $students = $query->paginate(50);
-    
-        // Pass filters for the form
-        $classes = StudentList::select('class')->distinct()->pluck('class');
-        $tk_smt_list = StudentList::select('tk_smt')->distinct()->pluck('tk_smt');
-        session()->put('header', 'Daftar Nama Siswa');
-    
-        return view('clinic.student', compact('students', 'classes', 'tk_smt_list'));
 
+        // Paginate the results (make sure pagination works across unioned queries)
+        $students = $query->paginate(50);
+
+        // Get distinct values for class and tk_smt (you can do this per table or for the unioned results)
+        $classes = DB::table($tables[0])->select('class')->distinct()->pluck('class');
+        $tk_smt_list = collect();
+        for($i=0;$i<5;$i++){
+            $tk_smt = DB::table($tables[$i])->select('tk_smt')->distinct()->pluck('tk_smt');
+            $tk_smt_list = $tk_smt_list->merge($tk_smt);
+        }
+
+        // Store header in session
+        session()->put('header', 'Daftar Nama Siswa');
+
+        // Return the view with necessary data
+        return view('clinic.student', compact('students', 'classes', 'tk_smt_list'));
     }
 
     /**
@@ -121,11 +140,20 @@ class StudentListClinic extends Controller
 
     public function import(Request $request)
     {
+        // dd($request);
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls,csv',
+            'file' => 'required|mimes:xlsx,csv,xls',
+            'table' => 'required|in:student_list_for_d3_t1,student_list_for_d3_t2,student_list_for_d4_t1,student_list_for_d4_t2,student_list_for_d4_t3',
         ]);
 
-        Excel::import(new StudentsImport, $request->file('file'));
+        // Identify the target table
+        $table = $request->input('table');
+
+        // Remove all existing data
+        DB::table($table)->truncate();
+
+        // Import new data
+        \Excel::import(new StudentsImport($table), $request->file('file'));
 
         return back()->with('success', 'Students imported successfully!');
     }

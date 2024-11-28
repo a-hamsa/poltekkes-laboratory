@@ -14,7 +14,8 @@ class AbsensiClinic extends Model
         'name',
         'nim',
         'class',
-        'semester',
+        'room',
+        'meet',
         'absent_status'
     ];
 }

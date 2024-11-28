@@ -25,8 +25,8 @@
                         <label for="tk_smt" class="text-sm font-medium text-gray-700">TK./SMT</label>
                         <select name="tk_smt" id="tk_smt"
                             class="form-select px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            @foreach ($tk_smt_list as $tk_smt)
-                                <option value="{{ $tk_smt }}" {{ request('tk_smt') == $tk_smt ? 'selected' : '' }}>
+                            @foreach ($tk_smt_list as $index => $tk_smt)
+                                <option value="{{ $index }}" {{ request('tk_smt') == $index ? 'selected' : '' }}>
                                     {{ $tk_smt }}
                                 </option>
                             @endforeach
@@ -44,70 +44,95 @@
             </div>
         </div>
         <!-- Student Table -->
-        <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
-            <thead class="bg-primary text-white uppercase text-sm leading-normal">
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead>
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">No</th>
-                    <th class="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Name</th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">NIM</th>
-                    <!-- Add columns for Pertemuan 1 to Pertemuan 8 -->
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 1
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 2
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 3
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 4
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 5
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 6
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 7
-                    </th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Pertemuan 8
-                    </th>
+                    <th class="border border-gray-300 px-4 py-2">Name</th>
+                    <th class="border border-gray-300 px-4 py-2">NIM</th>
+                    @for ($meet = 1; $meet <= 8; $meet++)
+                        <th class="border border-gray-300 px-4 py-2">Pertemuan {{ $meet }}</th>
+                    @endfor
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($students as $student)
+            <tbody>
+                @foreach ($attendanceData as $data)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
-                            {{ $loop->iteration }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">
-                            {{ $student->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $student->nim }}
-                        </td>
-                        <!-- Add data for Pertemuan 1 to Pertemuan 8 -->
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            <!-- Example data for Pertemuan 1, adjust according to your actual data -->
-                            {{ $student->pertemuan_1 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_2 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_3 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_4 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_5 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_6 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_7 ?? 'N/A' }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                            {{ $student->pertemuan_8 ?? 'N/A' }}
-                        </td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $data['name'] }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $data['nim'] }}</td>
+                        @for ($meet = 1; $meet <= 8; $meet++)
+                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                @if ($data['attendance']['pertemuan_' . $meet] == 'Menunggu Konfirmasi')
+                                    <button onclick="confirmAction('{{ $data['name'] }}','{{ $data['nim'] }}', {{ $meet }})"
+                                        class="text-blue-500 underline hover:text-blue-700 focus:outline-none">
+                                        Confirm
+                                    </button>
+                                @elseif ($data['attendance']['pertemuan_' . $meet] == 'Hadir')
+                                    Hadir
+                                @else
+                                    No Record
+                                @endif
+                            </td>
+                        @endfor
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
+        <div id="confirmationPopup" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <p id="confirmationMessage" class="text-lg font-medium text-gray-700 mb-4"></p>
+                <div id="formContainer"></div>
+                <button onclick="hidePopup()" class="mt-4 text-red-500 hover:text-red-600">
+                    Cancel
+                </button>
+            </div>
+        </div>
+
+        <script>
+            let selectedMeet = null;
+            let selectedStudent = null;
+
+            function confirmAction(name, nim, meet) {
+                // Show the popup with a dynamic message
+                document.getElementById('confirmationMessage').textContent =
+                    `Do you want to confirm attendance for ${name} in Pertemuan ${meet}?`;
+
+                // Create a dynamic form
+                const formContainer = document.getElementById('formContainer');
+                formContainer.innerHTML = `
+                    <form action="{{ route('absensi.update') }}" method="POST">
+                        @csrf
+                        @method('put')
+                        <input type="hidden" name="nim" value="${nim}">
+                        <input type="hidden" name="meet" value="${meet}">
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+                            Confirm
+                        </button>
+                    </form>
+                `;
+
+                // Show the popup
+                document.getElementById('confirmationPopup').classList.remove('hidden');
+            }
+
+
+            function hidePopup() {
+                document.getElementById('confirmationPopup').classList.add('hidden');
+                selectedMeet = null;
+                selectedStudent = null;
+            }
+
+            function confirmAttendance() {
+                // Handle the confirmed action here, e.g., redirect or perform an action
+                console.log(`Attendance confirmed for ${selectedStudent} in Pertemuan ${selectedMeet}`);
+
+                // Hide the popup
+                hidePopup();
+
+                // Optional: Perform additional actions (e.g., AJAX request or redirection)
+            }
+        </script>
+
 
 
     </div>

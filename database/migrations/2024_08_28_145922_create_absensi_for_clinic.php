@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('nim');
             $table->string('class');
             $table->string('meet');
+            $table->string('room');
             $table->string('absent_status');
             $table->timestamps();
         });
+        
     }
 
     /**

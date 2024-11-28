@@ -8,7 +8,7 @@
                 class="btn bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded transition duration-300 ease-in-out">
                 Tambah Data Baru
             </a>
-        
+
             <!-- Right: Filter Form and Import File Form -->
             <div class="flex space-x-6 items-center">
                 <!-- Filter Form -->
@@ -26,21 +26,21 @@
                             @endforeach
                         </select>
                     </div>
-        
+
                     <!-- TK./SMT Filter -->
                     <div class="flex flex-col space-y-2">
                         <label for="tk_smt" class="text-sm font-medium text-gray-700">TK./SMT</label>
                         <select name="tk_smt" id="tk_smt"
                             class="form-select px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            <option value="">All TK./SMT</option>
-                            @foreach ($tk_smt_list as $tk_smt)
-                                <option value="{{ $tk_smt }}" {{ request('tk_smt') == $tk_smt ? 'selected' : '' }}>
+                            @foreach ($tk_smt_list as $index => $tk_smt)
+                                <option value="{{ $index }}" {{ request('tk_smt') == $index ? 'selected' : '' }}>
                                     {{ $tk_smt }}
                                 </option>
                             @endforeach
                         </select>
+
                     </div>
-        
+
                     <!-- Filter Button -->
                     <div>
                         <button type="submit"
@@ -49,21 +49,66 @@
                         </button>
                     </div>
                 </form>
-        
+
                 <!-- Import File Form -->
-                <form id="importForm" action="{{ route('student.import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="file" id="fileInput" accept=".xlsx,.xls,.csv" class="hidden" required
-                        onchange="document.getElementById('importForm').submit();">
-                    <button type="button"
-                        class="btn bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded transition duration-300 ease-in-out"
-                        onclick="document.getElementById('fileInput').click();">
-                        Import File
+                <button
+                    class="btn bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded transition duration-300 ease-in-out"
+                    onclick="toggleModal()">
+                    Import Data
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Modal Background -->
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <!-- Modal Content -->
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Import Student Data</h3>
+                    <button class="text-gray-500 hover:text-gray-700 focus:outline-none" onclick="toggleModal()">
+                        ✕
                     </button>
+                </div>
+
+                <!-- Form -->
+                <form action="{{ route('student.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="file" class="block text-gray-700 font-medium mb-2">Upload File:</label>
+                        <input type="file" name="file" id="file" required
+                            class="block w-full border-gray-300 rounded focus:ring focus:ring-blue-200">
+                    </div>
+                    <div class="mb-4">
+                        <label for="table" class="block text-gray-700 font-medium mb-2">Select Table:</label>
+                        <select name="table" id="table" required
+                            class="block w-full border-gray-300 rounded focus:ring focus:ring-blue-200">
+                            <option value="student_list_for_d3_t1">D3/T1</option>
+                            <option value="student_list_for_d3_t2">D3/T2</option>
+                            <option value="student_list_for_d4_t1">D4/T1</option>
+                            <option value="student_list_for_d4_t2">D4/T2</option>
+                            <option value="student_list_for_d4_t3">D4/T3</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none">
+                            Submit
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
-        
+
+        <script>
+            // Function to toggle the modal
+            function toggleModal() {
+                const modal = document.getElementById('modal');
+                modal.classList.toggle('hidden');
+            }
+        </script>
+
+
 
         <!-- Student Table -->
         <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">

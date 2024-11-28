@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentList extends Model
 {
-    use HasFactory;
+    protected $table = 'student_list_for_d3_t1';
 
-    protected $table = 'student_list_for_clinic';
+    // Constructor to set the table dynamically
+    public function __construct(array $attributes = [], $table = null)
+    {
+        parent::__construct($attributes);
 
-    protected $fillable = [
-        'name',
-        'nim',
-        'class',
-        'tk_smt',
-    ];
+        if ($table) {
+            $this->table = $table;
+        }
+    }
 }

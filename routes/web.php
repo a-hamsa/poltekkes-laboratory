@@ -95,10 +95,9 @@ Route::post('/dashboard/student/import', [StudentListClinic::class, 'import'])->
 
 //ABSENTS
 Route::get('/dashboard/absensi', [AbsensiClinicController::class, 'index'])->name('absensi.index')->middleware('auth');
-Route::post('/dashboard/semester', [AbsensiClinicController::class, 'storeSemester'])->name('semester.store')->middleware('auth');
-Route::delete('/dashboard/semester/{id}', [AbsensiClinicController::class, 'destroySemester'])->name('semester.destroy')->middleware('auth');
-Route::get('/absensi', [AbsensiClinicController::class, 'createAbsentStatus'])->name('absensi.create')->middleware('auth');
-Route::post('/absensi', [AbsensiClinicController::class, 'storeAbsentStatus'])->name('absensi.store')->middleware('auth');
+Route::put('/dashboard/absensi', [AbsensiClinicController::class, 'updateAbsentStatus'])->name('absensi.update')->middleware('auth');
+Route::get('/absensi', [AbsensiClinicController::class, 'createAbsentStatus'])->name('absensi.create');
+Route::post('/absensi', [AbsensiClinicController::class, 'storeAbsentStatus'])->name('absensi.store');
 
 //PRE-KLINIK
 //get

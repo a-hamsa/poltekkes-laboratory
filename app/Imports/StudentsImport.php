@@ -4,13 +4,18 @@ namespace App\Imports;
 
 use App\Models\StudentList;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
 class StudentsImport implements ToCollection
 {
-    /**
-     * Process the entire sheet as a collection.
-     */
+    private $table;
+
+    public function __construct($table)
+    {
+        $this->table = $table;
+    }
+
     public function collection(Collection $rows)
     {
         // Extract class (I4) and TK_SMT (I3)
@@ -24,7 +29,7 @@ class StudentsImport implements ToCollection
                 $nim = $row[2] ?? null;  // Column C (Index 2)
 
                 if ($name && $nim) {
-                    StudentList::create([
+                     DB::table($this->table)->insert([
                         'name' => $name,
                         'nim' => $nim,
                         'class' => $class,
