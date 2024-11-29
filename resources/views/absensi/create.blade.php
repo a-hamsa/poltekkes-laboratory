@@ -83,6 +83,7 @@
                             onchange="populateFields(this)" required>
                             <option value="A">A</option>
                             <option value="B">B</option>
+                        </select>
                     </div>
 
                     <div>
@@ -91,10 +92,10 @@
                             class="form-control border border-gray-300 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             onchange="populateFields(this)" required>
                             @for ($i = 1; $i <= 8; $i++)
-                                <option value="pertemuan_{{$i}}">
-                                    Pertemuan {{$i}}
+                                <option value="pertemuan_{{ $i }}">
+                                    Pertemuan {{ $i }}
                                 </option>
-                            @endfor
+                            @endfor 
                         </select>
                     </div>
 
