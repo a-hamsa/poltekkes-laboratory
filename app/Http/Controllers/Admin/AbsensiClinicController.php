@@ -8,86 +8,109 @@ use Illuminate\Http\Request;
 use App\Models\AbsensiClinic;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AbsensiClinicController extends Controller
 {
     //
-    public function index(Request $request){
-        // Create an array of the tables you want to query
-        $tables = [
-            'student_list_for_d3_t1',
-            'student_list_for_d3_t2',
-            'student_list_for_d4_t1',
-            'student_list_for_d4_t2',
-            'student_list_for_d4_t3',
+    public function index(Request $request)
+{
+    // Create an array of the tables you want to query
+    $tables = [
+        'student_list_for_d3_t1',
+        'student_list_for_d3_t2',
+        'student_list_for_d4_t1',
+        'student_list_for_d4_t2',
+        'student_list_for_d4_t3',
+    ];
+
+    $tk_smt_index = $request->tk_smt ?? 0;
+
+    // Start building the query from the selected table
+    $query = DB::table($tables[$tk_smt_index]);
+
+    // Apply filters for the selected table
+    if ($request->has('class') && $request->class) {
+        $query->where('class', $request->class);
+    }
+
+    // Loop through other tables and union them with consistent filters
+    foreach (array_slice($tables, 1) as $table) {
+        $subQuery = DB::table($table);
+        if ($request->has('class') && $request->class) {
+            $subQuery->where('class', $request->class);
+        }
+        $query->union($subQuery);
+    }
+
+    // Get all results
+    $studentsCollection = collect($query->get());
+
+    // Pagination variables
+    $perPage = 50;
+    $currentPage = $request->input('page', 1); // Default to page 1 if no page is specified
+    $currentPageItems = $studentsCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+    // Create a paginator
+    $students = new LengthAwarePaginator(
+        $currentPageItems,
+        $studentsCollection->count(),
+        $perPage,
+        $currentPage,
+        ['path' => $request->url(), 'query' => $request->query()]
+    );
+
+    // Get distinct values for classes
+    $classes = collect();
+    foreach ($tables as $table) {
+        $classes = $classes->merge(DB::table($table)->select('class')->distinct()->pluck('class'));
+    }
+    $classes = $classes->unique()->values(); // Ensure classes are unique
+
+    // Get distinct values for TK./SMT
+    $tk_smt_list = collect();
+    foreach ($tables as $table) {
+        $tk_smt_list = $tk_smt_list->merge(DB::table($table)->select('tk_smt')->distinct()->pluck('tk_smt'));
+    }
+    $tk_smt_list = $tk_smt_list->unique()->values(); // Ensure TK./SMT values are unique
+
+    // Fetch attendance data for relevant students
+    $attendance = AbsensiClinic::whereIn('meet', [
+        'pertemuan_1', 'pertemuan_2', 'pertemuan_3',
+        'pertemuan_4', 'pertemuan_5', 'pertemuan_6',
+        'pertemuan_7', 'pertemuan_8'
+    ])->whereIn('nim', $students->pluck('nim'))
+      ->get()
+      ->groupBy('nim');
+
+    // Prepare attendance data for each student
+    $attendanceData = [];
+    foreach ($students as $student) {
+        $attendanceData[$student->nim] = [
+            'name' => $student->name,
+            'nim' => $student->nim,
+            'attendance' => []
         ];
 
-        // Initialize the query builder for all tables
-        $query = DB::table($tables[($request->tk_smt) ? $request->tk_smt : 0]);
+        // Loop through meetings to check attendance
+        for ($meet = 1; $meet <= 8; $meet++) {
+            $meeting = 'pertemuan_' . $meet;
 
-        // Loop through the tables and union the results
-        foreach (array_slice($tables, 1) as $table) {
-            $query->union(DB::table($table));
+            // Get the attendance record for the student and the meeting
+            $status = $attendance->get($student->nim)?->firstWhere('meet', $meeting);
+
+            // Add the attendance status or fallback to a default value
+            $attendanceData[$student->nim]['attendance'][$meeting] = $status->absent_status ?? 'No Record';
         }
-
-        // Apply filters if they are set
-        if ($request->has('class') && $request->class) {
-            $query->where('class', $request->class);
-        }
-
-        // Paginate the results (make sure pagination works across unioned queries)
-        $students = $query->paginate(50);
-
-        // Get distinct values for class and tk_smt (you can do this per table or for the unioned results)
-        $classes = DB::table($tables[0])->select('class')->distinct()->pluck('class');
-        $tk_smt_list = collect();
-        for($i=0;$i<5;$i++){
-            $tk_smt = DB::table($tables[$i])->select('tk_smt')->distinct()->pluck('tk_smt');
-            $tk_smt_list = $tk_smt_list->merge($tk_smt);
-        }
-
-        $attendance = AbsensiClinic::whereIn('meet', ['pertemuan_1', 'pertemuan_2', 'pertemuan_3', 'pertemuan_4', 'pertemuan_5', 'pertemuan_6', 'pertemuan_7', 'pertemuan_8'])
-                            ->whereIn('nim', $students->pluck('nim'))
-                            ->get()
-                            ->groupBy('nim');
-
-        // Format the data so that it's easier to work with in the view
-        $attendanceData = [];
-        foreach ($students as $student) {
-            $attendanceData[$student->nim] = [
-                'name' => $student->name,
-                'nim' => $student->nim,
-                'attendance' => []
-            ];
-            // Add the attendance status for each meeting (pertemuan_1 to pertemuan_8)
-            for ($meet = 1; $meet <= 8; $meet++) {
-                $meeting = 'pertemuan_' . $meet;
-
-                // Get the attendance data for the student and meeting
-                $status = $attendance->get($student->nim);
-                
-                // Check if attendance data exists for the student
-                if ($status) {
-                    // Find the first match for the current meeting
-                    $status = $status->firstWhere('meet', $meeting);
-                }
-
-                // Only add attendance if status is not null or 'N/A'
-                if ($status && $status->absent_status !== null && $status->absent_status !== 'N/A') {
-                    $attendanceData[$student->nim]['attendance'][$meeting] = $status->absent_status;
-                } else {
-                    $attendanceData[$student->nim]['attendance'][$meeting] = 'No Record'; // Or 'Absent' or any other placeholder
-                }
-            }
-        }
-        // dd($attendanceData);
-
-        // Store header in session
-        session()->put('header', 'Rekap Absensi');
-
-        // Return the view with necessary data
-        return view('absensi.index', compact('students', 'classes', 'tk_smt_list', 'attendanceData'));
     }
+
+    // Store header in session
+    session()->put('header', 'Rekap Absensi');
+
+    // Return the view with necessary data
+    return view('absensi.index', compact('students', 'classes', 'tk_smt_list', 'attendanceData'));
+}
+
 
     public function createAbsentStatus(Request $request) {
         return view('absensi.create');
