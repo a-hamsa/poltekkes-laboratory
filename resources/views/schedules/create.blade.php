@@ -10,7 +10,7 @@
                     @csrf
 
                     <div class="form-group flex flex-col">
-                        <label for="title" class="text-lg font-semibold mb-2">Title</label>
+                        <label for="title" class="text-lg font-semibold mb-2">Tingkat</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}" required
                             class="form-control border border-gray-300 p-2 rounded @error('title') border-red-500 @enderror">
                         @error('title')
@@ -21,15 +21,10 @@
                     </div>
 
                     <div class="form-group flex flex-col">
-                        <label for="semester_id" class="text-lg font-semibold mb-2">Semester</label>
-                        <select name="semester_id" id="semester_id" required
-                            class="form-control border border-gray-300 p-2 rounded @error('semester_id') border-red-500 @enderror">
-                            <option value="" disabled selected>Select Semester</option>
-                            @foreach ($semesters as $semester)
-                                <option value="{{ $semester->id }}">{{ $semester->semester }}</option>
-                            @endforeach
-                        </select>
-                        @error('semester_id')
+                        <label for="semester" class="text-lg font-semibold mb-2">Semester</label>
+                        <input type="text" name="semester" id="semester" value="{{ old('semester') }}" required
+                            class="form-control border border-gray-300 p-2 rounded @error('semester') border-red-500 @enderror">
+                        @error('semester')
                             <span class="text-red-500 mt-2 text-sm">
                                 <strong>{{ $message }}</strong>
                             </span>

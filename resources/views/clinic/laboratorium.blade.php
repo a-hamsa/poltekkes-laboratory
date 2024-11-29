@@ -132,7 +132,7 @@
         <div class="standards fade-in">
             <div class="title text-2xl font-bold mb-8">Standart & Formulir Kegiatan Laboratorium</div>
             <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-3">
                     <button id="open-popup" data-pdf="{{ $dosen }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-flask mb-2"></i>
@@ -143,32 +143,32 @@
                         <i class="fas fa-file-alt mb-2"></i>
                         SOP dan Instruksi Kerja
                     </a>
-                    <a href="{{ route('jadwal') }}"
+                    {{-- <a href="{{ route('jadwal') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>
                         Jadwal Pemakaian Lab
-                    </a>
+                    </a> --}}
 
                     <button id="open-popup" data-pdf="{{ $tatib }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-gavel mb-2"></i>
                         Tata Tertib
                     </button>
-                    <a href="{{ route('klinik.inventory') }}"
+                    {{-- <a href="{{ route('klinik.inventory') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 lg:col-start-2">
                         <i class="fas fa-clipboard-list mb-2"></i>
                         Inventarisasi Alat
-                    </a>
-                    <a href=" {{ route('absensi.create') }}"
+                    </a> --}}
+                    {{-- <a href=" {{ route('absensi.create') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-user-check mb-2"></i>
                         Absensi Mahasiswa
-                    </a>
-                    <a href="{{ route('klinik.stock') }}"
+                    </a> --}}
+                    {{-- <a href="{{ route('klinik.stock') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 md:col-start-2 lg:col-start-auto">
                         <i class="fas fa-user-clock mb-2"></i>
                         Stok Bahan Habis Pakai
-                    </a>
+                    </a> --}}
 
                 </div>
             </div>

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('pdf_file'); // to store the filename of the uploaded PDF
+            $table->string('pdf_file');
+            $table->string('semester');
             $table->timestamps();
         });
     }

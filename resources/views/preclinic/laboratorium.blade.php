@@ -143,31 +143,31 @@
                         <i class="fas fa-file-alt mb-2"></i>
                         SOP dan Instruksi Kerja
                     </a>
-                    <a href="{{ route('jadwal') }}"
+                    {{-- <a href="{{ route('jadwal') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-tools mb-2"></i>
                         Jadwal Pemakaian Lab
-                    </a>
+                    </a> --}}
                     <button id="open-popup" data-pdf="{{ $tatib }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-gavel mb-2"></i>
                         Tata Tertib
                     </button>
-                    <a href="{{ route('preklinik.inventory') }}"
+                    {{-- <a href="{{ route('preklinik.inventory') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 lg:col-start-2">
                         <i class="fas fa-clipboard-list mb-2"></i>
                         Inventarisasi Alat
-                    </a>
-                    <a href=" {{ route('absensi.create') }}"
+                    </a> --}}
+                    {{-- <a href=" {{ route('absensi.create') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2">
                         <i class="fas fa-user-check mb-2"></i>
                         Absensi Mahasiswa
-                    </a>
-                    <a href="{{ route('preklinik.stock') }}"
+                    </a> --}}
+                    {{-- <a href="{{ route('preklinik.stock') }}"
                         class="px-8 py-4 bg-teal-600 text-white rounded-lg shadow hover:bg-teal-700 duration-200 flex flex-col items-center col-span-2 md:col-start-2 lg:col-start-auto">
                         <i class="fas fa-user-clock mb-2"></i>
                         Stok Bahan Habis Pakai
-                </a>
+                </a> --}}
 
                 </div>
             </div>

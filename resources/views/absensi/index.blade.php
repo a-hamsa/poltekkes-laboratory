@@ -93,11 +93,9 @@
             let selectedStudent = null;
 
             function confirmAction(name, nim, meet) {
-                // Show the popup with a dynamic message
                 document.getElementById('confirmationMessage').textContent =
                     `Do you want to confirm attendance for ${name} in Pertemuan ${meet}?`;
 
-                // Create a dynamic form
                 const formContainer = document.getElementById('formContainer');
                 formContainer.innerHTML = `
                     <form action="{{ route('absensi.update') }}" method="POST">

@@ -13,21 +13,20 @@ class ScheduleController extends Controller
     {
         session()->put('header', 'Jadwal Penggunaan Lab');
 
-        $schedules = Schedule::with('semester')->get();
+        $schedules = Schedule::all();
         return view('admin.schedule', compact('schedules'));
     }
 
     public function create()
     {
-        $semesters = Semester::all();
-        return view('schedules.create', compact('semesters'));
+        return view('schedules.create');
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'semester_id' => 'required|exists:semesters,id',
+            'semester' => 'required|string|max:255',
             'pdf_file' => 'required|mimes:pdf|max:2048'
         ]);
 
@@ -44,8 +43,7 @@ class ScheduleController extends Controller
 
     public function edit(Schedule $schedule)
     {
-        $semesters = Semester::all();
-        return view('schedules.edit', compact('schedule', 'semesters'));
+        return view('schedules.edit', compact('schedule'));
     }
 
     public function update(Request $request, Schedule $schedule)

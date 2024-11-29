@@ -84,12 +84,11 @@ class KlinikController extends Controller
     public function jadwal()
     {
         // Retrieve all schedules grouped by semester
-        $schedulesBySemester = Schedule::with('semester')->get()->groupBy('semester_id');
+        $schedulesBySemester = Schedule::all();
 
         // Pass the data to the view
         return view('schedules.index', [
-            'schedulesBySemester' => $schedulesBySemester,
-            'semesters' => Semester::all()
+            'schedulesBySemester' => $schedulesBySemester
         ]);
     }
 }

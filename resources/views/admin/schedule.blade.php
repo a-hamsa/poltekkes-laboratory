@@ -23,7 +23,7 @@
                         @foreach($schedules as $schedule)
                             <tr>
                                 <td class="border px-4 py-2">{{ $schedule->title }}</td>
-                                <td class="border px-4 py-2">{{ $schedule->semester->semester }}</td>
+                                <td class="border px-4 py-2">{{ $schedule->semester }}</td>
                                 <td class="border px-4 py-2">
                                     <a href="{{ asset('storage/uploads/' . $schedule->pdf_file) }}" target="_blank" class="text-primary">
                                         View PDF

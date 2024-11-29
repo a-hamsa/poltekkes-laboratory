@@ -26,15 +26,11 @@
     <div class="container mx-auto p-6">
         <h1 class="text-2xl font-bold mb-6">Jadwal Penggunaan Lab</h1>
 
-        @foreach ($schedulesBySemester as $semesterId => $schedules)
-            @php
-                $semester = $semesters->firstWhere('id', $semesterId);
-            @endphp
+        @foreach ($schedulesBySemester as $schedule)
 
             <div class="mb-6">
-                <h2 class="text-xl font-semibold mb-4">{{ $semester ? $semester->semester : 'Unknown Semester' }}</h2>
+                {{-- <h2 class="text-xl font-semibold mb-4">{{ $semester ? $semester->semester : 'Unknown Semester' }}</h2> --}}
                 <div class="space-y-4">
-                    @foreach ($schedules as $schedule)
                         <div class="card bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden p-4">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-lg font-semibold">{{ $schedule->title }}</h3>
@@ -49,7 +45,6 @@
                                 @endif
                             </div>
                         </div>
-                    @endforeach
                 </div>
             </div>
         @endforeach

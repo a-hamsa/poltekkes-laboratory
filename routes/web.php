@@ -137,7 +137,7 @@ Route::put('/dashboard/pre/stok/{id}', [StokPreclinicController::class, 'update'
 Route::delete('/dashboard/pre/stok/{id}', [StokPreclinicController::class, 'destroy'])->name('prestok.destroy')->middleware('auth');
 
 // Route::resource('schedules', ScheduleController::class);
-Route::get('/jadwal', [KlinikController::class, 'jadwal'])->name('jadwal')->middleware('auth');
+Route::get('/jadwal', [KlinikController::class, 'jadwal'])->name('jadwal');
 Route::get('/dashboard/schedule', [ScheduleController::class, 'index'])->name('schedules.index')->middleware('auth');
 Route::get('/dashboard/schedule/create', [ScheduleController::class, 'create'])->name('schedules.create')->middleware('auth');
 Route::post('/dashboard/schedule', [ScheduleController::class, 'store'])->name('schedules.store')->middleware('auth');
