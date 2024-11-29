@@ -106,6 +106,7 @@
                             onchange="populateFields(this)" required>
                             <option value="klinik">Klinik</option>
                             <option value="preklinik">Preklinik</option>
+                        </select>
                     </div>
 
                     <div>
