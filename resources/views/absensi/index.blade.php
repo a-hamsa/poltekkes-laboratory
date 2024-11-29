@@ -25,11 +25,13 @@
                         <label for="tk_smt" class="text-sm font-medium text-gray-700">TK./SMT</label>
                         <select name="tk_smt" id="tk_smt"
                             class="form-select px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            @foreach ($tk_smt_list as $index => $tk_smt)
-                                <option value="{{ $index }}" {{ request('tk_smt') == $index ? 'selected' : '' }}>
-                                    {{ $tk_smt }}
-                                </option>
-                            @endforeach
+                            <option value="0" {{ request('tk_smt') == 0 ? 'selected' : '' }}>D3/T1</option>
+                            <option value="1" {{ request('tk_smt') == 1 ? 'selected' : '' }}>D3/T2</option>
+                            <option value="2" {{ request('tk_smt') == 2 ? 'selected' : '' }}>D3/T3</option>
+                            <option value="3" {{ request('tk_smt') == 3 ? 'selected' : '' }}>D4/T1</option>
+                            <option value="4" {{ request('tk_smt') == 4 ? 'selected' : '' }}>D4/T2</option>
+                            <option value="5" {{ request('tk_smt') == 5 ? 'selected' : '' }}>D4/T3</option>
+                            <option value="6" {{ request('tk_smt') == 6 ? 'selected' : '' }}>D4/T4</option>
                         </select>
                     </div>
 

@@ -32,13 +32,14 @@
                         <label for="tk_smt" class="text-sm font-medium text-gray-700">TK./SMT</label>
                         <select name="tk_smt" id="tk_smt"
                             class="form-select px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            @foreach ($tk_smt_list as $index => $tk_smt)
-                                <option value="{{ $index }}" {{ request('tk_smt') == $index ? 'selected' : '' }}>
-                                    {{ $tk_smt }}
-                                </option>
-                            @endforeach
+                            <option value="0" {{ request('tk_smt') == 0 ? 'selected' : '' }}>D3/T1</option>
+                            <option value="1" {{ request('tk_smt') == 1 ? 'selected' : '' }}>D3/T2</option>
+                            <option value="2" {{ request('tk_smt') == 2 ? 'selected' : '' }}>D3/T3</option>
+                            <option value="3" {{ request('tk_smt') == 3 ? 'selected' : '' }}>D4/T1</option>
+                            <option value="4" {{ request('tk_smt') == 4 ? 'selected' : '' }}>D4/T2</option>
+                            <option value="5" {{ request('tk_smt') == 5 ? 'selected' : '' }}>D4/T3</option>
+                            <option value="6" {{ request('tk_smt') == 6 ? 'selected' : '' }}>D4/T4</option>
                         </select>
-
                     </div>
 
                     <!-- Filter Button -->
@@ -85,9 +86,11 @@
                             class="block w-full border-gray-300 rounded focus:ring focus:ring-blue-200">
                             <option value="student_list_for_d3_t1">D3/T1</option>
                             <option value="student_list_for_d3_t2">D3/T2</option>
+                            <option value="student_list_for_d3_t3">D3/T3</option>
                             <option value="student_list_for_d4_t1">D4/T1</option>
                             <option value="student_list_for_d4_t2">D4/T2</option>
                             <option value="student_list_for_d4_t3">D4/T3</option>
+                            <option value="student_list_for_d4_t4">D4/T4</option>
                         </select>
                     </div>
                     <div class="flex justify-end">
@@ -119,7 +122,7 @@
                     <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">NIM</th>
                     <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Kelas</th>
                     <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">TK./SMT</th>
-                    <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Actions</th>
+                    {{-- <th class="px-6 py-3 text-center text-xs font-bold text-white uppercase tracking-wider">Actions</th> --}}
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -134,7 +137,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $student->tk_smt }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                        {{-- <td class="px-6 py-4 whitespace-nowrap text-center">
                             <a href="{{ route('student.edit', $student->id) }}"
                                 class="inline-flex items-center px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded hover:bg-yellow-200">
                                 Edit
@@ -147,7 +150,7 @@
                                     Delete
                                 </button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

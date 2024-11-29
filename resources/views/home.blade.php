@@ -62,9 +62,9 @@
         <p class="text-center font-bold text-primary mb-6">Klik untuk Memulai Perjalanan Anda</p>
         <div class="flex justify-center gap-20">
             <a href="{{ route('klinik') }}"
-                class="bg-primary hover:bg-primary-dark transition duration-200 ease-in-out text-white text-center font-bold py-2 px-4 w-48 rounded-xl">Klinik</a>
+                class="bg-primary hover:bg-primary-dark transition duration-200 ease-in-out text-white text-center font-bold py-2 px-4 w-48 rounded-xl">D3</a>
             <a href="{{ route('preklinik') }}"
-                class="bg-primary hover:bg-primary-dark transition duration-200 ease-in-out text-white text-center font-bold py-2 px-4 w-48 rounded-xl">Pre-Klinik</a>
+                class="bg-primary hover:bg-primary-dark transition duration-200 ease-in-out text-white text-center font-bold py-2 px-4 w-48 rounded-xl">D4</a>
         </div>
     </div>
 </body>

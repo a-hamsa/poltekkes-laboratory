@@ -19,9 +19,11 @@ class AbsensiClinicController extends Controller
     $tables = [
         'student_list_for_d3_t1',
         'student_list_for_d3_t2',
+        'student_list_for_d3_t3',
         'student_list_for_d4_t1',
         'student_list_for_d4_t2',
         'student_list_for_d4_t3',
+        'student_list_for_d4_t4',
     ];
 
     $tk_smt_index = $request->tk_smt ?? 0;
@@ -32,15 +34,6 @@ class AbsensiClinicController extends Controller
     // Apply filters for the selected table
     if ($request->has('class') && $request->class) {
         $query->where('class', $request->class);
-    }
-
-    // Loop through other tables and union them with consistent filters
-    foreach (array_slice($tables, 1) as $table) {
-        $subQuery = DB::table($table);
-        if ($request->has('class') && $request->class) {
-            $subQuery->where('class', $request->class);
-        }
-        $query->union($subQuery);
     }
 
     // Get all results
@@ -60,19 +53,12 @@ class AbsensiClinicController extends Controller
         ['path' => $request->url(), 'query' => $request->query()]
     );
 
-    // Get distinct values for classes
+    // Collect class and tk_smt options
     $classes = collect();
     foreach ($tables as $table) {
         $classes = $classes->merge(DB::table($table)->select('class')->distinct()->pluck('class'));
     }
-    $classes = $classes->unique()->values(); // Ensure classes are unique
-
-    // Get distinct values for TK./SMT
-    $tk_smt_list = collect();
-    foreach ($tables as $table) {
-        $tk_smt_list = $tk_smt_list->merge(DB::table($table)->select('tk_smt')->distinct()->pluck('tk_smt'));
-    }
-    $tk_smt_list = $tk_smt_list->unique()->values(); // Ensure TK./SMT values are unique
+    $classes = $classes->unique()->values();
 
     // Fetch attendance data for relevant students
     $attendance = AbsensiClinic::whereIn('meet', [
@@ -108,7 +94,7 @@ class AbsensiClinicController extends Controller
     session()->put('header', 'Rekap Absensi');
 
     // Return the view with necessary data
-    return view('absensi.index', compact('students', 'classes', 'tk_smt_list', 'attendanceData'));
+    return view('absensi.index', compact('students', 'classes', 'attendanceData'));
 }
 
 

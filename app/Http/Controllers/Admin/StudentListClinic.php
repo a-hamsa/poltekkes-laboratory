@@ -14,68 +14,55 @@ class StudentListClinic extends Controller
 {
     //
     public function index(Request $request)
-{
-    $tables = [
-        'student_list_for_d3_t1',
-        'student_list_for_d3_t2',
-        'student_list_for_d4_t1',
-        'student_list_for_d4_t2',
-        'student_list_for_d4_t3',
-    ];
+    {
+        $tables = [
+            'student_list_for_d3_t1',
+            'student_list_for_d3_t2',
+            'student_list_for_d3_t3',
+            'student_list_for_d4_t1',
+            'student_list_for_d4_t2',
+            'student_list_for_d4_t3',
+            'student_list_for_d4_t4',
+        ];
 
-    $tk_smt_index = $request->tk_smt ?? 0;
+        $tk_smt_index = $request->tk_smt ?? 0;
 
-    // Start building the query from the selected table
-    $query = DB::table($tables[$tk_smt_index]);
+        // Start building the query from the selected table
+        $query = DB::table($tables[$tk_smt_index]);
 
-    // Apply filters for the selected table
-    if ($request->has('class') && $request->class) {
-        $query->where('class', $request->class);
-    }
-
-    // Loop through other tables and union them with consistent filters
-    foreach (array_slice($tables, 1) as $table) {
-        $subQuery = DB::table($table);
+        // Apply filters for the selected table
         if ($request->has('class') && $request->class) {
-            $subQuery->where('class', $request->class);
+            $query->where('class', $request->class);
         }
-        $query->union($subQuery);
+
+        // Get all results
+        $studentsCollection = collect($query->get());
+
+        // Pagination variables
+        $perPage = 50;
+        $currentPage = $request->input('page', 1); // Default to page 1 if no page is specified
+        $currentPageItems = $studentsCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+        // Create a paginator
+        $students = new LengthAwarePaginator(
+            $currentPageItems,
+            $studentsCollection->count(),
+            $perPage,
+            $currentPage,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+
+        // Collect class and tk_smt options
+        $classes = collect();
+        foreach ($tables as $table) {
+            $classes = $classes->merge(DB::table($table)->select('class')->distinct()->pluck('class'));
+        }
+        $classes = $classes->unique()->values();
+
+        session()->put('header', 'Daftar Nama Siswa');
+
+        return view('clinic.student', compact('students', 'classes'));
     }
-
-    // Get all results
-    $studentsCollection = collect($query->get());
-
-    // Pagination variables
-    $perPage = 50;
-    $currentPage = $request->input('page', 1); // Default to page 1 if no page is specified
-    $currentPageItems = $studentsCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
-
-    // Create a paginator
-    $students = new LengthAwarePaginator(
-        $currentPageItems,
-        $studentsCollection->count(),
-        $perPage,
-        $currentPage,
-        ['path' => $request->url(), 'query' => $request->query()]
-    );
-
-    // Collect class and tk_smt options
-    $classes = collect();
-    foreach ($tables as $table) {
-        $classes = $classes->merge(DB::table($table)->select('class')->distinct()->pluck('class'));
-    }
-    $classes = $classes->unique()->values();
-
-    $tk_smt_list = collect();
-    foreach ($tables as $table) {
-        $tk_smt_list = $tk_smt_list->merge(DB::table($table)->select('tk_smt')->distinct()->pluck('tk_smt'));
-    }
-    $tk_smt_list = $tk_smt_list->unique()->values();
-
-    session()->put('header', 'Daftar Nama Siswa');
-
-    return view('clinic.student', compact('students', 'classes', 'tk_smt_list'));
-}
 
 
     /**
@@ -167,7 +154,7 @@ class StudentListClinic extends Controller
         // dd($request);
         $request->validate([
             'file' => 'required|mimes:xlsx,csv,xls',
-            'table' => 'required|in:student_list_for_d3_t1,student_list_for_d3_t2,student_list_for_d4_t1,student_list_for_d4_t2,student_list_for_d4_t3',
+            'table' => 'required|in:student_list_for_d3_t1,student_list_for_d3_t2,student_list_for_d3_t3,student_list_for_d4_t1,student_list_for_d4_t2,student_list_for_d4_t3,student_list_for_d4_t4',
         ]);
 
         // Identify the target table

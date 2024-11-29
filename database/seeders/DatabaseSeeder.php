@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Admin',
-            'email' => 'Admin@email.com',
-            'password' => 'Admin1234#',
+            'email' => 'admin@email.com',
+            'password' => 'admin1234#',
         ]);
 
         // $this->call(AbsensiSeeder::class);

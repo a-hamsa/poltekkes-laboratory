@@ -19,8 +19,13 @@ class StudentsImport implements ToCollection
     public function collection(Collection $rows)
     {
         // Extract class (I4) and TK_SMT (I3)
-        $class = $rows[3][8] ?? null;  // Row 4, Column I (Index 8)
-        $tk_smt = $rows[2][8] ?? null; // Row 3, Column I (Index 8)
+        if($rows[3][8]){
+            $class = $rows[3][8] ?? null;  // Row 4, Column I (Index 8)
+            $tk_smt = $rows[2][8] ?? null; // Row 3, Column I (Index 8)
+        } else {
+            $class = $rows[3][10] ?? null;  // Row 4, Column I (Index 8)
+            $tk_smt = $rows[2][10] ?? null; // Row 3, Column I (Index 8)
+        }
 
         // Iterate over students (B11:B60 and C11:C60)
         foreach ($rows as $index => $row) {
