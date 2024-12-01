@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Semester;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ScheduleController extends Controller
 {
@@ -31,9 +32,18 @@ class ScheduleController extends Controller
         ]);
 
         if ($request->hasFile('pdf_file')) {
-            $fileName = time().'_'.$request->file('pdf_file')->getClientOriginalName();
+            $fileName = time() . '_' . $request->file('pdf_file')->getClientOriginalName();
             $filePath = $request->file('pdf_file')->storeAs('uploads', $fileName, 'public');
             $validated['pdf_file'] = $fileName;
+
+            // Generate QR code pointing to the PDF URL
+            $pdfUrl = asset('storage/uploads/' . $fileName);
+            $qrCodeFileName = time() . '_qrcode.png';
+            $qrCodePath = 'uploads/qrcodes/' . $qrCodeFileName;
+
+            // Generate and save the QR code image
+            \Storage::disk('public')->put($qrCodePath, QrCode::format('png')->size(200)->generate($pdfUrl));
+            $validated['qr_code'] = $qrCodeFileName;
         }
 
         Schedule::create($validated);
@@ -55,7 +65,7 @@ class ScheduleController extends Controller
         ]);
 
         if ($request->hasFile('pdf_file')) {
-            $fileName = time().'_'.$request->file('pdf_file')->getClientOriginalName();
+            $fileName = time() . '_' . $request->file('pdf_file')->getClientOriginalName();
             $filePath = $request->file('pdf_file')->storeAs('uploads', $fileName, 'public');
             $validated['pdf_file'] = $fileName;
         }

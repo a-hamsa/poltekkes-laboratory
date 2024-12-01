@@ -9,7 +9,7 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'semester', 'pdf_file'];
+    protected $fillable = ['title', 'semester', 'pdf_file', 'qr_code'];
 
    
 }

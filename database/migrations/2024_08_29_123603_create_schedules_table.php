@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('pdf_file');
             $table->string('semester');
+            $table->string('qr_code'); 
             $table->timestamps();
         });
     }
