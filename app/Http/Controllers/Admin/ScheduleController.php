@@ -38,11 +38,11 @@ class ScheduleController extends Controller
 
             // Generate QR code pointing to the PDF URL
             $pdfUrl = asset('storage/uploads/' . $fileName);
-            $qrCodeFileName = time() . '_qrcode.png';
+            $qrCodeFileName = time() . '_qrcode.svg';
             $qrCodePath = 'uploads/qrcodes/' . $qrCodeFileName;
 
             // Generate and save the QR code image
-            \Storage::disk('public')->put($qrCodePath, QrCode::format('png')->size(200)->generate($pdfUrl));
+            \Storage::disk('public')->put($qrCodePath, QrCode::format('svg')->size(200)->generate($pdfUrl));
             $validated['qr_code'] = $qrCodeFileName;
         }
 
